@@ -1,6 +1,6 @@
 # Cloud Security Sim
 
-# 6 Authors
+# 1 Authors
 
 - Jake Summerville
 - Martin Lopez
