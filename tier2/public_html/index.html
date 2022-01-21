@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : index.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the login page
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/index.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <h1 id="loginHeader"> PennyWise </h1>
+
+        <h2 id="sectionHeader"> Login </h2>
+
+        <div class="promptDiv">
+            <label class="inputLabel" for="usernameInput">Username</label>
+            <input type="text" id="usernameInput" name="username">
+        </div>
+
+        <div class="promptDiv">
+            <label class="inputLabel" for="passwordInput">Password</label>
+            <input type="password" id="passwordInput" name="password">
+        </div>
+
+        <div class="showPassDiv">
+            <label class="inputLabel" for="showPass">Show Password</label>
+            <input id="showPass" name="showPass" type="checkbox" onclick="showPassword()">
+        </div>
+
+        <div>
+            <input id="userBtn" type="submit" value="login" onclick="verifyUser()">
+        </div>
+
+        <div id="createDiv">
+            <a id="createAccount" href="create.html"> Create a new account </a>
+        </div>
+
+        <a id="helpLink" href="help.html">Need Help?</a>
+
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

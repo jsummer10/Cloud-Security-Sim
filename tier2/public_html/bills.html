@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : bills.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the bills page
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/bills.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <!-- Title --> 
+
+        <div id="titleDiv">
+            <img class="titleElements" id="titleImage" src="img/favicon.png">
+            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
+            <a id="helpBtn" href="help.html">Help</a>
+        </div>
+
+        <!-- Top Navigation Bar --> 
+
+        <div id="topNavBar" class="navbar">
+            <ul id="topNavBarUl">
+                <li class="topNavBarLi"><a href="home.html">Overview</a></li>
+                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
+                <li class="topNavBarLi"><a id="active" href="bills.html">Bills</a></li>
+                <li class="topNavBarLi"><a href="budget.html">Budget</a></li>
+                <li class="topNavBarLi"><a href="investments.html">Investments</a></li>
+                <li class="topNavBarLi"><a href="property.html">Property</a></li>
+                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+            </ul>
+        </div>
+
+        <!-- Page Content --> 
+
+        <div id="billsDiv">
+
+            <table id="billsTable">
+                <tr>
+                    <th class="acctCol" onclick="sortTable(0)">Name</th>
+                    <th class="dateCol" onclick="sortTable(1)">Date</th>
+                    <th class="amtCol"  onclick="sortTable(2)">Amount</th>
+                    <th class="catCol"  onclick="sortTable(3)">Category</th>
+                    <th class="descCol" onclick="sortTable(4)">Description</th>
+                    <th class="actionCol" onclick="sortTable(5)">Action</th>
+                    <th class="hiddenCol" onclick="sortTable(6)"></th>
+                </tr>
+                <tr>
+                    <td class="acctCol"><input type="text" id="acctInput" placeholder="gas company"></td>
+                    <td class="dateCol"><input type="date" id="dateInput" style="font-size: 15px"></td>
+                    <td class="amtCol"><input type="number" id="amtInput" placeholder="98.99"></td>
+                    <td class="catCol"><input type="text" id="catInput" placeholder="utility"></td>
+                    <td class="descCol"><input type="text" id="descInput" placeholder="Gas bill for home"></td>
+                    <td class="actionCol"><input id="saveBtn" type="submit" value="add" onclick="addBill()" style="font-size: 14px"></td>
+                    <td class="hiddenCol"></td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/bills.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

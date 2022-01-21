@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : investments.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the investments page
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/investments.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <!-- Title --> 
+
+        <div id="titleDiv">
+            <img class="titleElements" id="titleImage" src="img/favicon.png">
+            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
+            <a id="helpBtn" href="help.html">Help</a>
+        </div>
+
+        <!-- Top Navigation Bar --> 
+
+        <div id="topNavBar" class="navbar">
+            <ul id="topNavBarUl">
+                <li class="topNavBarLi"><a href="home.html">Overview</a></li>
+                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
+                <li class="topNavBarLi"><a href="bills.html">Bills</a></li>
+                <li class="topNavBarLi"><a href="budget.html">Budget</a></li>
+                <li class="topNavBarLi"><a id="active" href="investments.html">Investments</a></li>
+                <li class="topNavBarLi"><a href="property.html">Property</a></li>
+                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+            </ul>
+        </div>
+
+        <!-- Page Content --> 
+
+        <div id="investmentsDiv">
+
+            <table id="investmentTable">
+                <tr>
+                    <th class="typeCol" onclick="sortTable(0)">Type</th>
+                    <th class="nameCol" onclick="sortTable(1)">Name</th>
+                    <th class="buyCol"  onclick="sortTable(2)">Buy</th>
+                    <th class="curCol"  onclick="sortTable(3)">Current</th>
+                    <th class="gainCol" onclick="sortTable(4)">Gain</th>
+                    <th class="actionCol" onclick="sortTable(5)">Action</th>
+                    <th class="hiddenCol" onclick="sortTable(6)"></th>
+                </tr>
+                <tr>
+                    <td class="typeCol"><input type="text" id="typeInput" placeholder="stock"></td>
+                    <td class="nameCol"><input type="text" id="nameInput" placeholder="APPL"></td>
+                    <td class="buyCol"><input type="number" id="buyInput" placeholder="126" min="0"></td>
+                    <td class="curCol"><input type="number" id="curInput" placeholder="138" min="0"></td>
+                    <td class="gainCol"><input type="number" id="gainInput" placeholder="12"></td>
+                    <td class="actionCol"><input id="saveBtn" type="submit" value="add" onclick="addInvestment()" style="font-size: 14px"></td>
+                    <td class="hiddenCol"></td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/investments.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

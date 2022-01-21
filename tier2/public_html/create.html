@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : create.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates a new user account
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/create.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <h1 id="loginHeader"> PennyWise </h1>
+
+        <h2 id="sectionHeader"> Account Create </h2>
+
+        <div class="promptDiv">
+            <label for="fNameInput">First Name</label>
+            <input type="text" id="fNameInput" name="fname">
+        </div>
+
+        <div class="promptDiv">
+            <label for="lNameInput">Last Name</label>
+            <input type="text" id="lNameInput" name="lname">
+        </div>
+
+        <div class="promptDiv">
+            <label for="usernameInput">Username</label>
+            <input type="text" id="usernameInput" name="username">
+        </div>
+
+        <div class="promptDiv">
+            <label for="passwordInput">Password</label>
+            <input type="password" id="passwordInput" name="password">
+        </div>
+
+        <div>
+            <input id="userBtn" type="submit" value="Create Account" onclick="createUser()">
+        </div>
+
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/create.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

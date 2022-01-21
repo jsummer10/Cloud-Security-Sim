@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : home.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the home page that is
+              displayed after logging in
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/home.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <!-- Title --> 
+
+        <div id="titleDiv">
+            <img class="titleElements" id="titleImage" src="img/favicon.png">
+            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
+            <a id="helpBtn" href="help.html">Help</a>
+        </div>
+
+        <!-- Top Navigation Bar --> 
+
+        <div id="topNavBar" class="navbar">
+            <ul id="topNavBarUl">
+                <li class="topNavBarLi"><a id="active" href="home.html">Overview</a></li>
+                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
+                <li class="topNavBarLi"><a href="bills.html">Bills</a></li>
+                <li class="topNavBarLi"><a href="budget.html">Budget</a></li>
+                <li class="topNavBarLi"><a href="investments.html">Investments</a></li>
+                <li class="topNavBarLi"><a href="property.html">Property</a></li>
+                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+            </ul>
+        </div>
+
+        <!-- Page Content --> 
+
+        <div id="accountOverview">
+
+            <div id="section1">
+                <div class="subsectionDiv">
+                    <h3 class="subtitle" id="acctDiv"> Transactions </h3>
+                    <table class="itemTable" id="acctTable">
+                    </table>
+                </div>
+
+                <div class="subsectionDiv">
+                    <h3 class="subtitle" id="investmentDiv"> Investments </h3>
+                    <table class="itemTable" id="investTable">
+                    </table>
+                </div>
+
+            </div>
+
+            <div id="section2">
+                <div class="subsectionDiv">
+                    <h3 class="subtitle" id="billsDiv"> Bills </h3>
+                    <table class="itemTable" id="billsTable">
+                    </table>
+                </div>
+
+                <div class="subsectionDiv">
+                    <h3 class="subtitle" id="propertyDiv"> Property </h3>
+                    <table class="itemTable" id="propTable">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/home.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

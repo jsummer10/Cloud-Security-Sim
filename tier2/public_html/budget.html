@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : budget.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the budget page
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/budget.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <!-- Title --> 
+
+        <div id="titleDiv">
+            <img class="titleElements" id="titleImage" src="img/favicon.png">
+            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
+            <a id="helpBtn" href="help.html">Help</a>
+        </div>
+
+        <!-- Top Navigation Bar --> 
+
+        <div id="topNavBar" class="navbar">
+            <ul id="topNavBarUl">
+                <li class="topNavBarLi"><a href="home.html">Overview</a></li>
+                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
+                <li class="topNavBarLi"><a href="bills.html">Bills</a></li>
+                <li class="topNavBarLi"><a id="active" href="budget.html">Budget</a></li>
+                <li class="topNavBarLi"><a href="investments.html">Investments</a></li>
+                <li class="topNavBarLi"><a href="property.html">Property</a></li>
+                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+            </ul>
+        </div>
+
+        <!-- Page Content --> 
+
+        <div id="budgetDiv">
+
+            <table id="budgetTable">
+                <tr>
+                    <th class="catCol" onclick="sortTable(0)">Category</th>
+                    <th class="dateCol" onclick="sortTable(1)">End Date</th>
+                    <th class="maxCol"  onclick="sortTable(2)">Max</th>
+                    <th class="curCol"  onclick="sortTable(3)">Current</th>
+                    <th class="remainCol" onclick="sortTable(4)">Remaining</th>
+                    <th class="actionCol" onclick="sortTable(5)">Action</th>
+                    <th class="hiddenCol" onclick="sortTable(6)"></th>
+                </tr>
+                <tr>
+                    <td class="catCol"><input type="text" id="catInput" placeholder="entertainment"></td>
+                    <td class="dateCol"><input type="date" id="dateInput" style="font-size: 15px"></td>
+                    <td class="maxCol"><input type="number" id="maxInput" placeholder="200" min="0"></td>
+                    <td class="curCol"><input type="number" id="curInput" placeholder="150"></td>
+                    <td class="remainCol"><input type="number" id="remainInput" placeholder="50"></td>
+                    <td class="actionCol"><input id="saveBtn" type="submit" value="add" onclick="addBudget()" style="font-size: 14px"></td>
+                    <td class="hiddenCol"></td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/budget.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

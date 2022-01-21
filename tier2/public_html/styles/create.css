@@ -1,0 +1,50 @@
+/***************************************************************
+ * 
+ * Project     : PennyWise
+ * 
+ * File name   : create.css
+ * 
+ * Authors     : Diego Moscoso & Jacob Summerville
+ * 
+ * Description : This file sets the theme for create.html
+ *               website
+ * 
+ ***************************************************************/
+
+html {
+    margin-left: 50px;
+}
+
+#loginHeader {
+    margin-top: 50px;
+    color: var(--color_default_text);
+}
+
+#sectionHeader {
+    margin-top: 25px;
+    color: var(--color_default_text);
+}
+
+.promptDiv{
+    width: 450px;
+    margin-top: 50px;
+    font: 18px Arial, sans-serif;
+    color: var(--color_default_text);
+}
+
+#passwordInput, #usernameInput, #fNameInput, #lNameInput {
+    float: right;
+    width: 300px;
+    font: 18px Arial, sans-serif;
+    padding: 5px 0px;
+}
+
+#userBtn {
+    margin-top: 40px;
+    width: 200px;
+    height: 25px;
+}
+
+#createDiv {
+    margin-top: 25px;
+}

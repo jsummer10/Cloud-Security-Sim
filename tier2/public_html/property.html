@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------------
+
+Project     : PennyWise
+
+File name   : property.html
+
+Authors     : Diego Moscoso & Jacob Summerville
+
+Description : This file creates the property page
+
+------------------------------------------------------>
+
+<html lang="en">
+  
+    <head>
+        <meta charset="utf-8"/>
+        <title>PennyWise</title>
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/property.css">
+        <link rel="icon" href="img/favicon.png">
+    </head>
+  
+    <body>
+
+        <!-- Title --> 
+
+        <div id="titleDiv">
+            <img class="titleElements" id="titleImage" src="img/favicon.png">
+            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
+            <a id="helpBtn" href="help.html">Help</a>
+        </div>
+
+        <!-- Top Navigation Bar --> 
+
+        <div id="topNavBar" class="navbar">
+            <ul id="topNavBarUl">
+                <li class="topNavBarLi"><a href="home.html">Overview</a></li>
+                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
+                <li class="topNavBarLi"><a href="bills.html">Bills</a></li>
+                <li class="topNavBarLi"><a href="budget.html">Budget</a></li>
+                <li class="topNavBarLi"><a href="investments.html">Investments</a></li>
+                <li class="topNavBarLi"><a id="active" href="property.html">Property</a></li>
+                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+            </ul>
+        </div>
+
+        <!-- Page Content --> 
+
+        <div id="propertyDiv">
+
+            <table id="propertyTable">
+                <tr>
+                    <th class="typeCol"   onclick="sortTable(0)">Type</th>
+                    <th class="ageCol"    onclick="sortTable(1)">Age</th>
+                    <th class="buyCol"    onclick="sortTable(2)">Purchase Value</th>
+                    <th class="curCol"    onclick="sortTable(3)">Current Value</th>
+                    <th class="changeCol" onclick="sortTable(4)">Change</th>
+                    <th class="actionCol" onclick="sortTable(5)">Action</th>
+                    <th class="hiddenCol" onclick="sortTable(6)"></th>
+                </tr>
+                <tr>
+                    <td class="typeCol"><input type="text" id="typeInput" placeholder="house"></td>
+                    <td class="ageCol"><input type="text" id="ageInput" placeholder="4 years"></td>
+                    <td class="buyCol"><input type="number" id="buyInput" placeholder="260000" min="0"></td>
+                    <td class="curCol"><input type="number" id="curInput" placeholder="280000" min="0"></td>
+                    <td class="changeCol"><input type="number" id="changeInput" placeholder="20000"></td>
+                    <td class="actionCol"><input id="saveBtn" type="submit" value="add" onclick="addProperty()" style="font-size: 14px"></td>
+                    <td class="hiddenCol"></td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/property.js"></script>
+        <script src="scripts/theme.js"></script>
+
+    </body>
+
+</html>
+

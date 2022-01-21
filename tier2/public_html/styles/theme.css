@@ -1,0 +1,120 @@
+/***************************************************************
+ * 
+ * Project     : PennyWise
+ * 
+ * File name   : theme.css
+ * 
+ * Authors     : Diego Moscoso & Jacob Summerville
+ * 
+ * Description : This file sets the overall theme for the 
+ *               website
+ * 
+ ***************************************************************/
+
+:root {
+    --color_background: #003333;
+    --color_default_text: #f2f2f2;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background: var(--color_background);
+}
+
+/*********************
+ * Title
+ *********************/
+
+#titleDiv {
+    width: 96%;
+    height: 40px;
+    padding-top: 10px;
+    padding-left: 4%;
+    background: #333333;
+}
+
+.titleElements {
+    display: inline;
+}
+
+#titleImage {
+    width: 25px;
+}
+
+#pageHeader {
+    margin-left: 20px;
+    color: var(--color_default_text);
+}
+
+#helpBtn {
+    float: right;
+    margin-right: 50px;
+    margin-top: 5px;
+    color: var(--color_default_text);
+    text-decoration: None;
+    font: 18px Arial, sans-serif;
+}
+
+/*********************
+ * Navigation Bar
+ *********************/
+
+#topNavBar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    border-bottom: 1px solid #66a3ff;
+}
+
+#topNavBarUl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.topNavBarLi {
+    float: left;
+}
+
+.topNavBarLi a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px 30px;
+    text-decoration: none;
+}
+
+.topNavBarLi input {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px 30px;
+    text-decoration: none; 
+}
+
+.topNavBarLi a:hover:not(#active){
+    background-color: #111;
+}
+
+.topNavBarLi input:hover:not(#active){
+    background-color: #111;
+}
+
+#active {
+    color: #66a3ff;
+}
+
+#logOutLi {
+    float: right;
+}
+
+#logOutBtn {
+    float: right;
+    border: none;
+    background: none;
+}
