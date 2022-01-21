@@ -1,0 +1,48 @@
+/***************************************************************
+ * 
+ * Project     : PennyWise
+ * 
+ * File name   : home.css
+ * 
+ * Authors     : Diego Moscoso & Jacob Summerville
+ * 
+ * Description : This file sets the theme for home.html
+ *               website
+ * 
+ ***************************************************************/
+
+#section1, #section2 {
+    position: fixed;
+    float: left;
+    width: 35%;
+    padding: 10px;
+    text-align: center;
+}
+
+#section1 {
+    left: 10%;
+}
+
+#section2 {
+    right: 10%;
+}
+
+.subsectionDiv {
+    margin: 50px 0px;
+    width: 90%;
+    padding: 20px;
+    color: #333333;
+    background: #e6e6e6;
+}
+
+.itemTable {
+    width: 100%;
+    color: #333333;
+    font: 20px Arial, sans-serif;
+}
+
+.itemTable td {
+    width: 50%;
+    text-align: center;
+    padding-top: 15px;
+}

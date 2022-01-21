@@ -1,0 +1,79 @@
+/***************************************************************
+ * 
+ * Project     : PennyWise
+ * 
+ * File name   : index.css
+ * 
+ * Authors     : Diego Moscoso & Jacob Summerville
+ * 
+ * Description : This file sets the theme for index.html
+ *               website
+ * 
+ ***************************************************************/
+
+html {
+    margin-left: 50px;
+}
+
+#loginHeader {
+    margin-top: 50px;
+    color: var(--color_default_text);
+}
+
+#sectionHeader {
+    margin-top: 25px;
+    color: var(--color_default_text);
+}
+
+.promptDiv{
+    width: 450px;
+    margin-top: 50px;
+    font: 18px Arial, sans-serif;
+    color: var(--color_default_text);
+}
+
+.showPassDiv {
+    color: var(--color_default_text);
+    margin-top: 50px;
+    font: 18px Arial, sans-serif;
+}
+
+#passwordInput, #usernameInput {
+    float: right;
+    width: 300px;
+    font: 18px Arial, sans-serif;
+    padding: 5px 0px;
+}
+
+#userBtn {
+    margin-top: 40px;
+    width: 200px;
+    height: 25px;
+}
+
+#userBtn:hover {
+    background: #87ACA3;
+}
+
+#createDiv {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#createAccount {
+    text-decoration: none;
+    color: white;
+}
+
+#createAccount:hover {
+    color: #87ACA3;
+}
+
+#helpLink {
+    color: var(--color_default_text);
+    text-decoration: None;
+}
+
+#helpLink:hover {
+    color: #87ACA3;
+}
