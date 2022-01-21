@@ -1,15 +1,10 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : home.js
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This script contains JavaScript for home.html
- * 
- ***************************************************************/
-
+/**
+ * JavaScript for home.html
+ *
+ * @file      home.js.
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
+ */
 // Display data on load
 window.onload = function() {
     displayTransactions();
@@ -18,13 +13,11 @@ window.onload = function() {
     displayProperty();
 };
 
-/**********************************************************
- * Name     : displayTransactions
- * Purpose  : This function displays transactions
- * 
+/**
+ * This function displays transactions
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function displayTransactions() {
 
     $.ajax({
@@ -76,13 +69,11 @@ function displayTransactions() {
     });
 }
 
-/**********************************************************
- * Name     : displayBills
- * Purpose  : This function displays bills
- * 
+/**
+ * This function displays bills
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function displayBills() {
 
     $.ajax({
@@ -130,13 +121,11 @@ function displayBills() {
     });
 }
 
-/**********************************************************
- * Name     : displayInvest
- * Purpose  : This function displays investments
- * 
+/**
+ * This function displays investments
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function displayInvest() {
 
     $.ajax({
@@ -184,13 +173,11 @@ function displayInvest() {
     });
 }
 
-/**********************************************************
- * Name     : displayProperty
- * Purpose  : This function displays property
- * 
+/**
+ * This function displays property
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function displayProperty() {
 
     $.ajax({

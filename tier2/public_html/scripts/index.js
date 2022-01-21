@@ -1,22 +1,16 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : index.js
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This script contains JavaScript for index.html
- * 
- ***************************************************************/
+/**
+ * JavaScript for index.html
+ *
+ * @file      index.js.
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
+ */
 
-/**********************************************************
- * Name     : verifyUser
- * Purpose  : This function verifies a user's credentials
- * 
+/**
+ * This function verifies a user's credentials
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function verifyUser() {
     // window.location.href = "home.html";
 
@@ -59,6 +53,11 @@ function verifyUser() {
     httpRequest.send();
 }
 
+/**
+ * Display entered password
+ * @param   : None
+ * @return  : None
+ */
 function showPassword() {
     var passInput = document.getElementById('passwordInput');
     if (passInput.type === 'password') {

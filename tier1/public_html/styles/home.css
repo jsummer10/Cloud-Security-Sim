@@ -1,16 +1,3 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : home.css
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This file sets the theme for home.html
- *               website
- * 
- ***************************************************************/
-
 #section1, #section2 {
     position: fixed;
     float: left;

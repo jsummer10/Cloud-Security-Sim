@@ -1,15 +1,10 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : transactions.js
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This script contains JavaScript for 
- *               transactions.html
- * 
- ***************************************************************/
+/**
+ * JavaScript for transactions.html
+ *
+ * @file      transactions.js.
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
+ */
 
 let TABLENAME = 'transactionTable';
 
@@ -39,14 +34,11 @@ const column_id = {
     HIDDEN   : 'hiddenCol'
 }
 
-/**********************************************************
- * Name     : makeTitle
- * Purpose  : This function capitalizes each word in a 
- *            string
- * 
+/**
+ * This function capitalizes each word in a string
  * @param   : string phrase
  * @return  : capitalized string phrase
- **********************************************************/
+ */
 function makeTitle(string) {
 
     var newString = '';
@@ -67,13 +59,11 @@ function makeTitle(string) {
     return newString;
 }
 
-/**********************************************************
- * Name     : deleteRow
- * Purpose  : This function deletes a row from the table
- * 
+/**
+ * This function deletes a row from the table
  * @param   : btn
  * @return  : None
- **********************************************************/
+ */
 function deleteRow(btn) {
 
     var row = btn.parentNode.parentNode;
@@ -97,13 +87,11 @@ function deleteRow(btn) {
     row.parentNode.removeChild(row);
 }
 
-/**********************************************************
- * Name     : clearTable
- * Purpose  : Resets the table to default
- * 
+/**
+ * Resets the table to default
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function clearTable() {
     var table = document.getElementById(TABLENAME);
     while (table.rows.length > 2) {
@@ -111,13 +99,11 @@ function clearTable() {
     }
 }
 
-/**********************************************************
- * Name     : displayTable
- * Purpose  : This function displays all transactions
- * 
+/**
+ * This function displays all transactions
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function displayTable() {
 
     $.ajax({
@@ -188,14 +174,11 @@ function displayTable() {
     });
 }
 
-/**********************************************************
- * Name     : addTransaction
- * Purpose  : This function adds a transaction to the 
- *            database
- * 
+/**
+ * This function adds a transaction to the database
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function addTransaction() {
     let account  = makeTitle($('#acctInput').val().trim());
     let date     = $('#dateInput').val().trim();
@@ -252,13 +235,11 @@ function addTransaction() {
     displayTable();
 }
 
-/**********************************************************
- * Name     : sortTable
- * Purpose  : This function sorts the table rows
- * 
+/**
+ * This function sorts the table rows
  * @param   : column number to be sorted
  * @return  : None
- **********************************************************/
+ */
 function sortTable(n) {
     var rows, shouldSwitch, switchcount = 0;
     table = document.getElementById(TABLENAME);

@@ -1,16 +1,3 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : theme.css
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This file sets the overall theme for the 
- *               website
- * 
- ***************************************************************/
-
 :root {
     --color_background: #003333;
     --color_default_text: #f2f2f2;

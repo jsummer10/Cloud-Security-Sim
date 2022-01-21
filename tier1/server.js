@@ -1,18 +1,14 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : server.js
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This script sets up the node.js server
- * 
- ***************************************************************/
+/**
+ * The main controller for the node.js server
+ *
+ * @file      server.js.
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
+ */
 
-//-----------
-// Constants
-//-----------
+/**
+ * Constants
+ */
 
 const express       = require('express');
 const mongoose      = require('mongoose');
@@ -31,9 +27,9 @@ app.use(cookieParser());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
-//-----------------
-// Database schema
-//-----------------
+/**
+ * Database schema
+ */
 
 var Schema = mongoose.Schema;
 
@@ -96,24 +92,23 @@ var PropertySchema = new Schema({
 });
 var Property = mongoose.model('Property', PropertySchema);
 
-//---------------------
-// Display public_html
-//---------------------
+/**
+ * Display public_html
+ */
 
 app.use(express.static('public_html'));
 app.use('/home.html', authenticate);
 
-
-//----------------------------
-// Set up mongoose connection
-//----------------------------
+/** 
+ * Set up mongoose connection
+ */
 
 mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true });
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//--------------------
-// Handle GET request
-//--------------------
+/**
+ * Handle GET request
+ */
 
 var SECOND = 1000;
 var MINUTE = SECOND * 60;
@@ -153,9 +148,9 @@ app.get('/testcookies', (req, res) => {
     res.send(req.cookies);
 });
 
-//--------------------
-// Handle GET request
-//--------------------
+/**
+ * Handle GET request
+ */
 
 // Returns a JSON array containing the information for every 
 // user in the database
@@ -526,9 +521,9 @@ app.get('/logout/', (req, res) => {
     res.send('OK');
 })
 
-//---------------------
-// Handle POST request
-//---------------------
+/**
+ * Handle POST request
+ */
 
 // Adds a user to the database
 app.post('/add/user/', (req, res) => {
@@ -750,9 +745,9 @@ app.post('/add/property/', (req, res) => {
         });
 });
 
-//--------------------------
-// Listen on LOCALHOST:3000
-//--------------------------
+/**
+ * Listen on LOCALHOST:3000
+ */
 
 const PORT = 3000;
 app.listen(PORT, () => {

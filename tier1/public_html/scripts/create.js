@@ -1,26 +1,25 @@
-/***************************************************************
- * 
- * Project     : PennyWise
- * 
- * File name   : create.js
- * 
- * Authors     : Diego Moscoso & Jacob Summerville
- * 
- * Description : This script contains JavaScript for create.html
- * 
- ***************************************************************/
+/**
+ * JavaScript for create.html
+ *
+ * @file      create.js.
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
+ */
 
-/**********************************************************
- * Name     : addUser
- * Purpose  : This function adds a user to the database
- * 
+/**
+ * This function adds a user to the database
  * @param   : None
  * @return  : None
- **********************************************************/
+ */
 function createUser() {
     window.location.href = "home.html";
 }
 
+/**
+ * Add new user to the database
+ * @param   : None
+ * @return  : None
+ */
 function createUser() {
     // grab everything from html page
     let f = $('#fNameInput').val().trim();
