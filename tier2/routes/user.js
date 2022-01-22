@@ -119,11 +119,11 @@ exports.get = function(req, res){
  * @return   None
  */
 exports.login = function(req, res){
-  let u = req.params.username;
-  let p = req.params.password;
-  User.find({ username: u }).exec(function (error, results) {
+  let username = req.body.data.username;
+  let password = req.body.data.password;
+  
+  User.find({ username: username }).exec(function (error, results) {
     if (results.length == 1) {
-      let password = req.params.password;
       var salt = results[0].salt;
       crypto.pbkdf2(password, salt, iterations, 64, 'sha512', (err, hash) => {
         if (err) {
@@ -132,8 +132,8 @@ exports.login = function(req, res){
         let hStr = hash.toString('base64');
         if (results[0].hash == hStr) {
           let sessionKey = Math.floor(Math.random() * 1000);
-          sessionKeys[u] = [sessionKey, Date.now()];
-          res.cookie("login", { username: u, key: sessionKey }, { maxAge: MINUTE * 20 });
+          sessionKeys[username] = [sessionKey, Date.now()];
+          res.cookie("login", { username: username, key: sessionKey }, { maxAge: MINUTE * 20 });
           res.send('OK');
         }
         else {

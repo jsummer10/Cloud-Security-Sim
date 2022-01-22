@@ -12,45 +12,39 @@
  * @return  : None
  */
 function verifyUser() {
-    // window.location.href = "home.html";
+  let username = document.getElementById('usernameInput').value;
+  let password = document.getElementById('passwordInput').value;
 
-    var httpRequest = new XMLHttpRequest();
-    
-    let u = document.getElementById('usernameInput').value;
-    let p = document.getElementById('passwordInput').value;
+  if (username == '') {
+    alert('Enter a username');
+    return;
+  }
 
-    if (u == '') {
-        alert('Enter a username');
-        return;
+  if (password == '') {
+    alert('Enter a password');
+    return;
+  }
+
+  let user = { 
+    username : username, 
+    password : password
+  };
+
+  let user_str = JSON.stringify(user);
+
+  $.ajax({
+    url:'/user/login/',
+    data: { data: user_str },
+    method: 'POST',
+
+    success: function() {
+      window.location = '/home.html';
+    },
+
+    error: function() {
+      alert('Unable to login');
     }
-
-    if (p == '') {
-        alert('Enter a password');
-        return;
-    }
-
-    // console.log(u + ' ' + p);    // uncomment when testing
-    httpRequest.onreadystatechange = () => {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) {
-                if (httpRequest.responseText == 'BAD') {
-                    alert('Issue logging in with that info');
-                } 
-                else {
-                    let url = '/home.html';
-                    console.log(url);
-                    window.location = url;
-                }
-                console.log('#' + httpRequest.responseText + '#') ;       
-            } 
-            else { 
-                alert('ERROR'); 
-            }
-        }
-    }
-  
-    httpRequest.open('GET', '/user/login/' + u + '/' + p, true);
-    httpRequest.send();
+  });
 }
 
 /**
@@ -59,10 +53,10 @@ function verifyUser() {
  * @return  : None
  */
 function showPassword() {
-    var passInput = document.getElementById('passwordInput');
-    if (passInput.type === 'password') {
-        passInput.type = 'text';
-    } else {
-        passInput.type = 'password';
-    }
+  var passInput = document.getElementById('passwordInput');
+  if (passInput.type === 'password') {
+    passInput.type = 'text';
+  } else {
+    passInput.type = 'password';
+  }
 }

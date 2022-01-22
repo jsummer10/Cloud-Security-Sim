@@ -69,7 +69,6 @@ app.use('/home.html', userRoute.mainAuth);
 app.get('/testcookies',  userRoute.testCookies);
 app.get('/get/users/',   userRoute.get);
 app.get('/user/logout/', userRoute.logout);
-app.get('/user/login/:username/:password', userRoute.login);
 
 app.get('/transaction/get/',        transactionRoute.get);
 app.get('/transaction/remove/:id',  transactionRoute.remove);
@@ -86,6 +85,7 @@ app.get('/property/remove/:id',     propertyRoute.remove);
  * POST requests
  */
 
+app.post('/user/login/',      userRoute.login);
 app.post('/user/add/',        userRoute.add);
 app.post('/transaction/add/', transactionRoute.add);
 app.post('/bill/add/',        billRoute.add);
