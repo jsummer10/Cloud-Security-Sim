@@ -14,7 +14,7 @@
 function logout(){
     
     $.ajax({
-        url: '/logout/',
+        url: '/user/logout/',
         method: 'GET',
 
         success: function() {

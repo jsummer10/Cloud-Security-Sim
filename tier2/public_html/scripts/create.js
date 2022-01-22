@@ -37,7 +37,7 @@ function createUser() {
     // console.log(user);  // unomment when testing
     // add new user
     $.ajax({
-        url: '/add/user/',
+        url: '/user/add/',
         data: { user: user_str },
         method:'POST',
         success: function() { 

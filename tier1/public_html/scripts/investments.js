@@ -61,7 +61,7 @@ function deleteRow(btn) {
     var rowId = row.childNodes[column.HIDDEN].innerHTML;
 
     $.ajax({
-        url:'/remove/investment/' + rowId,
+        url:'/investment/remove/' + rowId,
         method: 'GET',
 
         success: function() {
@@ -97,7 +97,7 @@ function clearTable() {
 function displayTable() {
 
     $.ajax({
-        url:'/get/investments/',
+        url:'/investment/get/',
         method: 'GET',
 
         success: function( result ) {
@@ -200,7 +200,7 @@ function addInvestment() {
     let investment_str = JSON.stringify(investment);
 
     $.ajax({
-        url: '/add/investment/',
+        url: '/investment/add/',
         data: { investment: investment_str },
         method:'POST',
 

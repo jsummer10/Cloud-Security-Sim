@@ -66,33 +66,32 @@ app.use('/home.html', userRoute.mainAuth);
  * GET requests
  */
 
-app.get('/testcookies', userRoute.testCookies);
-app.get('/get/users/',  userRoute.get);
-app.get('/logout/',     userRoute.logout);
-app.get('/login/:username/:password', userRoute.login);
+app.get('/testcookies',  userRoute.testCookies);
+app.get('/get/users/',   userRoute.get);
+app.get('/user/logout/', userRoute.logout);
+app.get('/user/login/:username/:password', userRoute.login);
 
-app.get('/get/transactions/',       transactionRoute.get);
-app.get('/remove/transaction/:id',  transactionRoute.remove);
-app.get('/get/bills/',              billRoute.get);
-app.get('/remove/bill/:id',         billRoute.remove);
-app.get('/get/budgets/',            budgetRoute.get);
-app.get('/remove/budget/:id',       budgetRoute.remove);
-app.get('/add/investment',          investmentRoute.get);
-app.get('/get/investments',         investmentRoute.get);
-app.get('/remove/investment/:id',   investmentRoute.remove);
-app.get('/get/property/',           propertyRoute.get);
-app.get('/remove/property/:id',     propertyRoute.remove);
+app.get('/transaction/get/',        transactionRoute.get);
+app.get('/transaction/remove/:id',  transactionRoute.remove);
+app.get('/bill/get/',               billRoute.get);
+app.get('/bill/remove/:id',         billRoute.remove);
+app.get('/budget/get/',             budgetRoute.get);
+app.get('/budget/remove/:id',       budgetRoute.remove);
+app.get('/investment/get/',         investmentRoute.get);
+app.get('/investment/remove/:id',   investmentRoute.remove);
+app.get('/property/get/',           propertyRoute.get);
+app.get('/property/remove/:id',     propertyRoute.remove);
 
 /**
- * Handle POST request
+ * POST requests
  */
 
-app.post('/add/user/',        userRoute.add);
-app.post('/add/transaction/', transactionRoute.add);
-app.post('/add/bill/',        billRoute.add);
-app.post('/add/budget/',      budgetRoute.add);
-app.post('/add/investment',   investmentRoute.add);
-app.post('/add/property/',    propertyRoute.add);
+app.post('/user/add/',        userRoute.add);
+app.post('/transaction/add/', transactionRoute.add);
+app.post('/bill/add/',        billRoute.add);
+app.post('/budget/add/',      budgetRoute.add);
+app.post('/investment/add/',  investmentRoute.add);
+app.post('/property/add/',    propertyRoute.add);
 
 /**
  * Listen on LOCALHOST:3000

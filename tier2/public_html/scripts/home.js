@@ -21,7 +21,7 @@ window.onload = function() {
 function displayTransactions() {
 
     $.ajax({
-        url:'/get/transactions/',
+        url:'/transaction/get/',
         method: 'GET',
 
         success: function( result ) {
@@ -77,7 +77,7 @@ function displayTransactions() {
 function displayBills() {
 
     $.ajax({
-        url:'/get/bills/',
+        url:'/bill/get/',
         method: 'GET',
 
         success: function( result ) {
@@ -129,7 +129,7 @@ function displayBills() {
 function displayInvest() {
 
     $.ajax({
-        url:'/get/investments/',
+        url:'/investment/get/',
         method: 'GET',
 
         success: function( result ) {
@@ -181,7 +181,7 @@ function displayInvest() {
 function displayProperty() {
 
     $.ajax({
-        url:'/get/property/',
+        url:'/property/get/',
         method: 'GET',
 
         success: function( result ) {

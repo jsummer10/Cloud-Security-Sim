@@ -49,7 +49,7 @@ function verifyUser() {
         }
     }
   
-    httpRequest.open('GET', '/login/' + u + '/' + p, true);
+    httpRequest.open('GET', '/user/login/' + u + '/' + p, true);
     httpRequest.send();
 }
 
