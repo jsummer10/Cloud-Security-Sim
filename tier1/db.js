@@ -46,10 +46,3 @@ exports.createUserTable = function(){
     });
   }); 
 }
-
-exports.sqlQuery = function(sqlQuery){
-  mainDB.query(sqlQuery, function (err, result) {
-    if (err) throw err;
-    return result;
-  });
-}

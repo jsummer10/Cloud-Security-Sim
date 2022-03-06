@@ -68,8 +68,7 @@ app.use(function (req, res, next) {
  */
 
 // app.get('/get/users/',   userRoute.get);
-// app.get('/user/logout/', userRoute.logout);
-// app.get('/user/login/:username/:password', userRoute.login);
+app.get('/user/login/:username/:password', userRoute.login);
 // 
 // app.get('/transaction/get/',        transactionRoute.get);
 // app.get('/transaction/remove/:id',  transactionRoute.remove);

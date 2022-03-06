@@ -12,45 +12,37 @@
  * @return  : None
  */
 function verifyUser() {
-    // window.location.href = "home.html";
+  // window.location.href = "home.html";
 
-    var httpRequest = new XMLHttpRequest();
+  var httpRequest = new XMLHttpRequest();
     
-    let u = document.getElementById('usernameInput').value;
-    let p = document.getElementById('passwordInput').value;
+  let username  = $('#username').val().trim();
+  let password  = $('#psw').val().trim();
 
-    if (u == '') {
-        alert('Enter a username');
-        return;
-    }
+  if (username == '') {
+    alert('Enter a username');
+    return;
+  }
 
-    if (p == '') {
-        alert('Enter a password');
-        return;
-    }
+  if (password == '') {
+    alert('Enter a password');
+    return;
+  }
 
-    // console.log(u + ' ' + p);    // uncomment when testing
-    httpRequest.onreadystatechange = () => {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) {
-                if (httpRequest.responseText == 'BAD') {
-                    alert('Issue logging in with that info');
-                } 
-                else {
-                    let url = '/home.html';
-                    console.log(url);
-                    window.location = url;
-                }
-                console.log('#' + httpRequest.responseText + '#') ;       
-            } 
-            else { 
-                alert('ERROR'); 
-            }
-        }
+  // add new user
+  $.ajax({
+    url: '/user/login/' + username + '/' + password,
+    method:'GET',
+    statusCode: {
+      201: function (response) {
+        localStorage.setItem('user', response.username);
+        window.location.href = "home.html";
+      },
+      401: function (response) {
+        alert('Invalid Credentials');
+      }
     }
-  
-    httpRequest.open('GET', '/user/login/' + u + '/' + p, true);
-    httpRequest.send();
+  });
 }
 
 /**

@@ -12,27 +12,5 @@
  * @return  : None
  */
 function logout(){
-    
-    $.ajax({
-        url: '/user/logout/',
-        method: 'GET',
-
-        success: function() {
-            console.log('Logged out');
-            changeLocation();
-        },
-        error: function() {
-            alert('Issue logging you out');
-        }
-    });
-}
-
-/**
- * Redirect after logout
- * @param   : None
- * @return  : None
- */
-function changeLocation() {
-    window.location.href = "index.html";
-
+  window.location.href = "index.html";
 }
