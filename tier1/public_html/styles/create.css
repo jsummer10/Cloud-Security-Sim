@@ -1,37 +1,60 @@
-html {
-    margin-left: 50px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#loginHeader {
-    margin-top: 50px;
-    color: var(--color_default_text);
+* {
+  box-sizing: border-box;
 }
 
-#sectionHeader {
-    margin-top: 25px;
-    color: var(--color_default_text);
+.container {
+  width: 75%;
+  padding: 16px;
+  background-color: white;
+  margin: 5% auto;
+  border-radius: 15px;
+  padding: 25px;
 }
 
-.promptDiv{
-    width: 450px;
-    margin-top: 50px;
-    font: 18px Arial, sans-serif;
-    color: var(--color_default_text);
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }
 
-#passwordInput, #usernameInput, #fNameInput, #lNameInput {
-    float: right;
-    width: 300px;
-    font: 18px Arial, sans-serif;
-    padding: 5px 0px;
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
 }
 
-#userBtn {
-    margin-top: 40px;
-    width: 200px;
-    height: 25px;
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
 }
 
-#createDiv {
-    margin-top: 25px;
+.registerbtn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 15px;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+a {
+  color: dodgerblue;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
 }

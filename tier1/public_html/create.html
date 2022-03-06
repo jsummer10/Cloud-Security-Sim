@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   
-    <head>
-        <meta charset="utf-8"/>
-        <title>PennyWise</title>
-        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
-        <link id="cssFile" rel="stylesheet" type="text/css" href="styles/create.css">
-        <link rel="icon" href="img/favicon.png">
-    </head>
-  
-    <body>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PennyWise</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
+    <link id="cssFile" rel="stylesheet" type="text/css" href="styles/create.css">
+    <link rel="icon" href="img/favicon.png">
+  </head>
 
-        <h1 id="loginHeader"> PennyWise </h1>
+  <body>
 
-        <h2 id="sectionHeader"> Account Create </h2>
+  <form>
+    <div class="container">
+      <h1>Register</h1>
+      <hr>
 
-        <div class="promptDiv">
-            <label for="fNameInput">First Name</label>
-            <input type="text" id="fNameInput" name="fname">
-        </div>
+      <label for="fname"><b>First Name</b></label>
+      <input type="text" name="fname" id="fname" required>
 
-        <div class="promptDiv">
-            <label for="lNameInput">Last Name</label>
-            <input type="text" id="lNameInput" name="lname">
-        </div>
+      <label for="lname"><b>Last Name</b></label>
+      <input type="text" name="lname" id="lname" required>
 
-        <div class="promptDiv">
-            <label for="usernameInput">Username</label>
-            <input type="text" id="usernameInput" name="username">
-        </div>
+      <label for="username"><b>Username</b></label>
+      <input type="text" name="username" id="username" required>
 
-        <div class="promptDiv">
-            <label for="passwordInput">Password</label>
-            <input type="password" id="passwordInput" name="password">
-        </div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" name="psw" id="psw" required>
 
-        <div>
-            <input id="userBtn" type="submit" value="Create Account" onclick="createUser()">
-        </div>
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" name="psw-repeat" id="psw-repeat" required>
+      <hr>
 
-        <script src="scripts/jquery.js"></script>
-        <script src="scripts/create.js"></script>
-        <script src="scripts/theme.js"></script>
+      <button type="submit" class="registerbtn" onclick="createUser()">Register</button>
+    </div>
+    
+    <div class="container signin">
+      <p>Already have an account? <a href="/">Sign in</a>.</p>
+    </div>
+  </form>
 
-    </body>
+  <script src="scripts/jquery.js"></script>
+  <script src="scripts/create.js"></script>
+  <script src="scripts/theme.js"></script>
+
+</body>
 
 </html>
 

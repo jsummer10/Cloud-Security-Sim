@@ -2,20 +2,54 @@
  * This file sets up the schema for MongoDB
  *
  * @file      db.js.
- * @author    Jacob Summerville, Jordan Elliott, Jesus Landin, 
- *            Almunthir Mohammed, Tamillia Thomas
- * @since     12/20/2021
+ * @author    Jacob Summerville, Martin Lopez, Diego Moscoso
+ * @since     01/21/2022
  */
 
-// to use mongoDB
-const mongoose = require("mongoose");
-const db = mongoose.connection;
+var mysql = require('mysql');
 
-// database url
-const mongoDBURL = 'mongodb://127.0.0.1/PennyWise';
+const mainDB = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "cloudsecurity",
+  database: "pennywise"
+});
 
-mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology:true });
+exports.createDatabase = function(){
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity"
+  });
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  db.connect(function(err) {
+    if (err) throw err;
 
-module.exports = mongoose;
+    // Create database called pennywise
+    const sql = "CREATE DATABASE IF NOT EXISTS pennywise";
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+    });
+  });
+}
+
+exports.createUserTable = function(){
+  mainDB.connect(function(err) {
+    if (err) throw err;
+
+    // Create users table
+    const sql = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, " + 
+      "fname VARCHAR(255), lname VARCHAR(255), username VARCHAR(255), " + 
+      "password VARCHAR(255))";
+    mainDB.query(sql, function (err, result) {
+      if (err) throw err;
+    });
+  }); 
+}
+
+exports.sqlQuery = function(sqlQuery){
+  mainDB.query(sqlQuery, function (err, result) {
+    if (err) throw err;
+    return result;
+  });
+}

@@ -7,46 +7,43 @@
  */
 
 /**
- * This function adds a user to the database
- * @param   : None
- * @return  : None
- */
-function createUser() {
-    window.location.href = "home.html";
-}
-
-/**
  * Add new user to the database
  * @param   : None
  * @return  : None
  */
 function createUser() {
-    // grab everything from html page
-    let f = $('#fNameInput').val().trim();
-    let l = $('#fNameInput').val().trim();
-    let u = $('#usernameInput').val().trim();
-    let p = $('#passwordInput').val().trim();
-    // create new user
-    let user = { 
-        fname    : f,
-        lname    : l,
-        username : u,
-        password : p 
-    };
-    let user_str = JSON.stringify(user);
-    // console.log(user);  // unomment when testing
-    // add new user
-    $.ajax({
-        url: '/user/add/',
-        data: { user: user_str },
-        method:'POST',
-        success: function() { 
-            console.log('New user sent'); 
-            alert('You may now login!');
-            window.location.href = "index.html";
-        },
-        error: function() { 
-            console.log('New user unsent'); 
-        }
-    });
+  let fname     = $('#fname').val().trim();
+  let lname     = $('#lname').val().trim();
+  let username  = $('#username').val().trim();
+  let psw       = $('#psw').val().trim();
+  let pswRepeat = $('#psw-repeat').val().trim();
+
+  if (psw != pswRepeat) {
+    alert('Password do not match');
+    return;
+  }
+
+  let user = { 
+      fname    : fname,
+      lname    : lname,
+      username : username,
+      password : psw
+  };
+  let user_str = JSON.stringify(user);
+
+  // add new user
+  $.ajax({
+    url: '/user/add/',
+    data: { user: user_str },
+    method:'POST',
+    statusCode: {
+      201: function (response) {
+        alert('Account created');
+        window.location.href = "home.html";
+      },
+      401: function (response) {
+        alert('Username Taken');
+      }
+    }
+  });
 }
