@@ -56,8 +56,8 @@ html {
 
 .navbar-options ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin-left: 10px;
+    font-family: var(--font_default);
 }
 
 .navbar-options li {
@@ -81,7 +81,7 @@ html {
     color: var(--color_schemeB);
 }
 
-.logout-btn input{
+.logout-btn input {
     border: none;
     background: none;
     text-decoration: none;
