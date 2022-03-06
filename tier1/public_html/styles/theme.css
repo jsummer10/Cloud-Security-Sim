@@ -1,6 +1,14 @@
 :root {
-    --color_background: #003333;
+    --color_schemeA: #659dbd;
+    --color_schemeB: #8D8741;
+    --color_schemeC: #DAAD86;
+    --color_schemeD: #BC986A;
+    --color_schemeE: #FBEEC1;
+
+    --color_background: var(--color_schemeA);
     --color_default_text: #f2f2f2;
+
+    --font_default: Arial, Helvetica, sans-serif;
 }
 
 *{
@@ -13,95 +21,69 @@ html {
 }
 
 /*********************
- * Title
+ * Top Navbar
  *********************/
 
-#titleDiv {
-    width: 96%;
-    height: 40px;
-    padding-top: 10px;
-    padding-left: 4%;
+.navbar {
+    width: 100%;
+    height: 50px;
     background: #333333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px;
 }
 
-.titleElements {
-    display: inline;
+.navbar-header {
+    font-family: var(--font_default);
+    color: white;
+    margin-left: 15px;
+    font-size: 12px;
 }
 
-#titleImage {
+.navbar-div {
+    flex: 1;
+}
+
+.navbar-icon {
+    flex: 0 0 25px;
+}
+
+.navbar-icon img {
     width: 25px;
 }
 
-#pageHeader {
-    margin-left: 20px;
-    color: var(--color_default_text);
-}
-
-#helpBtn {
-    float: right;
-    margin-right: 50px;
-    margin-top: 5px;
-    color: var(--color_default_text);
-    text-decoration: None;
-    font: 18px Arial, sans-serif;
-}
-
-/*********************
- * Navigation Bar
- *********************/
-
-#topNavBar {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    border-bottom: 1px solid #66a3ff;
-}
-
-#topNavBarUl {
+.navbar-options ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
-.topNavBarLi {
+.navbar-options li {
     float: left;
 }
 
-.topNavBarLi a {
+.navbar-options a {
     display: block;
     color: white;
     text-align: center;
-    padding: 25px 30px;
+    padding: 10px 15px;
     text-decoration: none;
 }
 
-.topNavBarLi input {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 25px 30px;
-    text-decoration: none; 
-}
-
-.topNavBarLi a:hover:not(#active){
-    background-color: #111;
-}
-
-.topNavBarLi input:hover:not(#active){
+.navbar-options a:hover:not(#active), 
+.logout-btn:hover:not(#active){
     background-color: #111;
 }
 
 #active {
-    color: #66a3ff;
+    color: var(--color_schemeB);
 }
 
-#logOutLi {
-    float: right;
-}
-
-#logOutBtn {
-    float: right;
+.logout-btn input{
     border: none;
     background: none;
+    text-decoration: none;
+    color: white;
 }

@@ -12,40 +12,49 @@
 
   <body>
 
-  <form>
-    <div class="container">
-      <h1>Register</h1>
-      <hr>
-
-      <label for="fname"><b>First Name</b></label>
-      <input type="text" name="fname" id="fname" required>
-
-      <label for="lname"><b>Last Name</b></label>
-      <input type="text" name="lname" id="lname" required>
-
-      <label for="username"><b>Username</b></label>
-      <input type="text" name="username" id="username" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" name="psw" id="psw" required>
-
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" name="psw-repeat" id="psw-repeat" required>
-      <hr>
-
-      <button type="submit" class="registerbtn" onclick="createUser()">Register</button>
+    <div class="navbar">
+      <div class="navbar-div navbar-icon">
+        <img src="img/favicon.png" alt="company icon">
+      </div>
+      <div class="navbar-div navbar-header">
+        <h2> PennyWise </h2>
+      </div>
     </div>
-    
-    <div class="container signin">
-      <p>Already have an account? <a href="/">Sign in</a>.</p>
-    </div>
-  </form>
 
-  <script src="scripts/jquery.js"></script>
-  <script src="scripts/create.js"></script>
-  <script src="scripts/theme.js"></script>
+    <form action="javascript:createUser()">
+      <div class="container">
+        <h1>Register</h1>
+        <hr>
 
-</body>
+        <label for="fname"><b>First Name</b></label>
+        <input type="text" name="fname" id="fname" required>
+
+        <label for="lname"><b>Last Name</b></label>
+        <input type="text" name="lname" id="lname" required>
+
+        <label for="username"><b>Username</b></label>
+        <input type="text" name="username" id="username" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="psw" id="psw" required>
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" name="psw-repeat" id="psw-repeat" required>
+        <hr>
+
+        <button type="submit" class="registerbtn">Register</button>
+      </div>
+      
+      <div class="container signin">
+        <p>Already have an account? <a href="/">Sign in</a>.</p>
+      </div>
+    </form>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/create.js"></script>
+    <script src="scripts/theme.js"></script>
+
+  </body>
 
 </html>
 

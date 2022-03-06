@@ -11,26 +11,27 @@
   
     <body>
 
-        <!-- Title --> 
-
-        <div id="titleDiv">
-            <img class="titleElements" id="titleImage" src="img/favicon.png">
-            <h2 class="titleElements" id="pageHeader"> PennyWise </h2>
-            <a id="helpBtn" href="help.html">Help</a>
-        </div>
-
         <!-- Top Navigation Bar --> 
 
-        <div id="topNavBar" class="navbar">
-            <ul id="topNavBarUl">
-                <li class="topNavBarLi"><a href="home.html">Overview</a></li>
-                <li class="topNavBarLi"><a href="transactions.html">Transactions</a></li>
-                <li class="topNavBarLi"><a href="bills.html">Bills</a></li>
-                <li class="topNavBarLi"><a id="active" href="budget.html">Budget</a></li>
-                <li class="topNavBarLi"><a href="investments.html">Investments</a></li>
-                <li class="topNavBarLi"><a href="property.html">Property</a></li>
-                <li class="topNavBarLi" id="logOutLi"><input id="logOutBtn" type="submit" value="Log Out" onclick="logout()"></li> 
+        <div class="navbar">
+          <div class="navbar-div navbar-icon">
+            <img src="img/favicon.png" alt="company icon">
+          </div>
+          <div class="navbar-div navbar-options">
+            <ul>
+              <li><a href="home.html">Overview</a></li>
+              <li><a href="transactions.html">Transactions</a></li>
+              <li><a href="bills.html">Bills</a></li>
+              <li><a id="active" href="budget.html">Budget</a></li>
+              <li><a href="investments.html">Investments</a></li>
+              <li><a href="property.html">Property</a></li>
+              <li class="logout-btn">
+                <a href="/">
+                  <input type="submit" value="Log Out" onclick="logout()">
+                </a>
+              </li>
             </ul>
+          </div>
         </div>
 
         <!-- Page Content --> 
