@@ -34,7 +34,7 @@ function verifyUser() {
     url: '/user/login/' + username + '/' + password,
     method:'GET',
     statusCode: {
-      201: function (response) {
+      200: function (response) {
         localStorage.setItem('user', response.username);
         window.location.href = "home.html";
       },

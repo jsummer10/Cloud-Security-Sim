@@ -7,10 +7,10 @@
  */
 // Display data on load
 window.onload = function() {
-    displayTransactions();
-    displayBills();
-    displayInvest();
-    displayProperty();
+  displayTransactions();
+  displayBills();
+  displayInvest();
+  displayProperty();
 };
 
 /**
@@ -20,53 +20,53 @@ window.onload = function() {
  */
 function displayTransactions() {
 
-    $.ajax({
-        url:'/transaction/get/',
-        method: 'GET',
+  $.ajax({
+    url:'/transaction/get/',
+    method: 'GET',
 
-        success: function( result ) {
-            
-            if (result == 'BAD') {
-                alert('You are no longer signed in! Redirecting to login.'); 
-                window.location.href = "index.html";
-                return;
-            }
+    success: function( result ) {
+      
+      if (result == 'BAD') {
+        alert('You are no longer signed in! Redirecting to login.'); 
+        window.location.href = "index.html";
+        return;
+      }
 
-            var table = document.getElementById("acctTable");
+      var table = document.getElementById("acctTable");
 
-            if (result.length == 0 || !Array.isArray(result)) {
-                var row = table.insertRow(0);
-                var cell = row.insertCell(0);
-                cell.classList.add('col1');
-                cell.innerHTML = 'No accounts found';
-                return
-            } 
+      if (result.length == 0 || !Array.isArray(result)) {
+        var row = table.insertRow(0);
+        var cell = row.insertCell(0);
+        cell.classList.add('col1');
+        cell.innerHTML = 'No accounts found';
+        return
+      } 
 
-            for (i in result) {
-                if (result[i] === undefined){
-                    continue;
-                }
-
-                var row = table.insertRow(i);
-
-                var col1 = row.insertCell(0);
-                col1.classList.add('col1');
-                col1.innerHTML = result[i].desc;
-
-                var col2 = row.insertCell(1);
-                col2.classList.add('col2');
-                var category = '-';
-                if (result[i].category.toLowerCase() == 'income') {
-                    category = '+';
-                }
-                col2.innerHTML = category + '$' + result[i].amount;
-            }
-        },
-
-        error: function() {
-            console.log('Unable to get account data');
+      for (i in result) {
+        if (result[i] === undefined){
+          continue;
         }
-    });
+
+        var row = table.insertRow(i);
+
+        var col1 = row.insertCell(0);
+        col1.classList.add('col1');
+        col1.innerHTML = result[i].desc;
+
+        var col2 = row.insertCell(1);
+        col2.classList.add('col2');
+        var category = '-';
+        if (result[i].category.toLowerCase() == 'income') {
+          category = '+';
+        }
+        col2.innerHTML = category + '$' + result[i].amount;
+      }
+    },
+
+    error: function() {
+      console.log('Unable to get account data');
+    }
+  });
 }
 
 /**
@@ -76,49 +76,47 @@ function displayTransactions() {
  */
 function displayBills() {
 
-    $.ajax({
-        url:'/bill/get/',
-        method: 'GET',
+  const loggedInUser = localStorage.getItem("user");
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    return;
+  }
 
-        success: function( result ) {
-            
-            if (result == 'BAD') {
-                alert('You are no longer signed in! Redirecting to login.'); 
-                window.location.href = "index.html";
-                return;
-            }
+  $.ajax({
+    url: '/bill/get/' + loggedInUser,
+    method:'GET',
+    statusCode: {
+      200: function (response) {
+        var table = document.getElementById("billsTable");
+        if (response.length == 0 || !Array.isArray(response)) {
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          cell.classList.add('col1');
+          cell.innerHTML = 'No bills found';
+          return
+        } 
 
-            var table = document.getElementById("billsTable");
+        for (i in response) {
+          if (response[i] === undefined){
+            continue;
+          }
 
-            if (result.length == 0 || !Array.isArray(result)) {
-                var row = table.insertRow(0);
-                var cell = row.insertCell(0);
-                cell.classList.add('col1');
-                cell.innerHTML = 'No bills found';
-                return
-            } 
+          var row = table.insertRow(i);
 
-            for (i in result) {
-                if (result[i] === undefined){
-                    continue;
-                }
+          var col1 = row.insertCell(0);
+          col1.classList.add('col1');
+          col1.innerHTML = response[i].name;
 
-                var row = table.insertRow(i);
-
-                var col1 = row.insertCell(0);
-                col1.classList.add('col1');
-                col1.innerHTML = result[i].name;
-
-                var col2 = row.insertCell(1);
-                col2.classList.add('col2');
-                col2.innerHTML = '$' + result[i].amount;
-            }
-        },
-
-        error: function() {
-            console.log('Unable to get bill data');
+          var col2 = row.insertCell(1);
+          col2.classList.add('col2');
+          col2.innerHTML = '$' + response[i].amount;
         }
-    });
+      },
+      400: function (response) {
+        alert('Unable to get bills');
+      }
+    }
+  });
 }
 
 /**
@@ -128,49 +126,49 @@ function displayBills() {
  */
 function displayInvest() {
 
-    $.ajax({
-        url:'/investment/get/',
-        method: 'GET',
+  $.ajax({
+    url:'/investment/get/',
+    method: 'GET',
 
-        success: function( result ) {
-            
-            if (result == 'BAD') {
-                alert('You are no longer signed in! Redirecting to login.'); 
-                window.location.href = "index.html";
-                return;
-            }
+    success: function( result ) {
+        
+      if (result == 'BAD') {
+        alert('You are no longer signed in! Redirecting to login.'); 
+        window.location.href = "index.html";
+        return;
+      }
 
-            var table = document.getElementById("investTable");
+      var table = document.getElementById("investTable");
 
-            if (result.length == 0 || !Array.isArray(result)) {
-                var row = table.insertRow(0);
-                var cell = row.insertCell(0);
-                cell.classList.add('col1');
-                cell.innerHTML = 'No investments found';
-                return
-            } 
+      if (result.length == 0 || !Array.isArray(result)) {
+        var row = table.insertRow(0);
+        var cell = row.insertCell(0);
+        cell.classList.add('col1');
+        cell.innerHTML = 'No investments found';
+        return
+      } 
 
-            for (i in result) {
-                if (result[i] === undefined){
-                    continue;
-                }
-
-                var row = table.insertRow(i);
-
-                var col1 = row.insertCell(0);
-                col1.classList.add('col1');
-                col1.innerHTML = result[i].name;
-
-                var col2 = row.insertCell(1);
-                col2.classList.add('col2');
-                col2.innerHTML = '$' + result[i].cur;
-            }
-        },
-
-        error: function() {
-            console.log('Unable to get investment data');
+      for (i in result) {
+        if (result[i] === undefined){
+          continue;
         }
-    });
+
+        var row = table.insertRow(i);
+
+        var col1 = row.insertCell(0);
+        col1.classList.add('col1');
+        col1.innerHTML = result[i].name;
+
+        var col2 = row.insertCell(1);
+        col2.classList.add('col2');
+        col2.innerHTML = '$' + result[i].cur;
+      }
+    },
+
+    error: function() {
+        console.log('Unable to get investment data');
+    }
+  });
 }
 
 /**
@@ -180,47 +178,47 @@ function displayInvest() {
  */
 function displayProperty() {
 
-    $.ajax({
-        url:'/property/get/',
-        method: 'GET',
+  $.ajax({
+    url:'/property/get/',
+    method: 'GET',
 
-        success: function( result ) {
-            
-            if (result == 'BAD') {
-                alert('You are no longer signed in! Redirecting to login.'); 
-                window.location.href = "index.html";
-                return;
-            }
-            
-            var table = document.getElementById("propTable");
+    success: function( result ) {
+        
+      if (result == 'BAD') {
+        alert('You are no longer signed in! Redirecting to login.'); 
+        window.location.href = "index.html";
+        return;
+      }
+      
+      var table = document.getElementById("propTable");
 
-            if (result.length == 0 || !Array.isArray(result)) {
-                var row = table.insertRow(0);
-                var cell = row.insertCell(0);
-                cell.classList.add('col1');
-                cell.innerHTML = 'No property found';
-                return
-            } 
+      if (result.length == 0 || !Array.isArray(result)) {
+        var row = table.insertRow(0);
+        var cell = row.insertCell(0);
+        cell.classList.add('col1');
+        cell.innerHTML = 'No property found';
+        return
+      } 
 
-            for (i in result) {
-                if (result[i] === undefined){
-                    continue;
-                }
-
-                var row = table.insertRow(i);
-
-                var col1 = row.insertCell(0);
-                col1.classList.add('col1');
-                col1.innerHTML = result[i].type;
-
-                var col2 = row.insertCell(1);
-                col2.classList.add('col2');
-                col2.innerHTML = '$' + result[i].current;
-            }
-        },
-
-        error: function() {
-            console.log('Unable to get property data');
+      for (i in result) {
+        if (result[i] === undefined){
+          continue;
         }
-    });
+
+        var row = table.insertRow(i);
+
+        var col1 = row.insertCell(0);
+        col1.classList.add('col1');
+        col1.innerHTML = result[i].type;
+
+        var col2 = row.insertCell(1);
+        col2.classList.add('col2');
+        col2.innerHTML = '$' + result[i].current;
+      }
+    },
+
+    error: function() {
+      console.log('Unable to get property data');
+    }
+  });
 }

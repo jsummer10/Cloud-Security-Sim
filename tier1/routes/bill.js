@@ -6,14 +6,7 @@
  * @since     01/21/2022
  */
 
-const delay = require('delay');
-
-const Bill = require('../models/bill')
-const User = require('../models/user')
-
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-const DELAY  = SECOND / 50;
+var mysql = require('mysql');
 
 /**
  * Function that adds a new bill to the database
@@ -21,113 +14,77 @@ const DELAY  = SECOND / 50;
  * @param    {Object} res    post response
  * @return   None
  */
-exports.add = function(req, res){
+exports.add = async function(req, res){
+  let bill = req.body;
 
-  try {
-    if (!req.cookies.login.username) {
-      res.send('BAD');
-      return;
-    }
-  } catch (except) {
-    res.send('BAD');
-    return;
-  }
-
-  let billObject = JSON.parse(req.body.bill);
-  // console.log(req.cookies);
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
-    if (users.length < 1) {
-      res.send('Not logged in');
-      return;
-    }
-
-    var newBill = new Bill({
-      name: billObject.name,
-      date: billObject.date,
-      desc: billObject.desc,
-      category: billObject.category,
-      amount: billObject.amount
-    });
-
-    newBill.save(function (err) {
-      if (err) console.log('An error occurred while saving');
-    })
-
-    users[0].bills.push(newBill._id);
-    users[0].save();
-    res.send('Bill created!')
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
   });
 
+  sql = "INSERT INTO bill (name, date, description, category, amount, username) " + 
+    "VALUES ('" + bill.name + "','" + bill.date + "','" + 
+    bill.description + "','" + bill.category + "','" + bill.amount + 
+    "','" + bill.username + "')";
+  db.query(sql, function (err, result) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
+    }
+    res.sendStatus(201)
+  });
 };
 
 /**
- * Function that returns a JSON array of bills
- * @param    {Object} req    post request
- * @param    {Object} res    post response
- * @return   None
- */
+* Function that returns an array of bills
+* @param    {Object} req    post request
+* @param    {Object} res    post response
+* @return   None
+*/
 exports.get = function(req, res){
-  if (!req.cookies.login || !req.cookies.login.username) {
-    res.send('BAD');
-    return;
-  }
-  
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
-    if (users.length < 1) {
-      res.send('BAD');
-      return;
-    }
-    var userBills = [];
-    for (bills of users[0].bills) {
-      Bill.find({ '_id': bills })
-        .exec(function (error, results) {
-          userBills.push(results[0]);
-        })
-    }
+  let usr = req.params.username;
+ 
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
+  });
 
-    // delay allows data to be sent in time
-    await delay(DELAY);
-    res.send(userBills);
-  })
+  var sql = "SELECT * FROM bill where username='" + usr + "'";
+  db.query(sql, function (err, bills) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
+    }
+    res.status(200).send(bills);
+  });
 };
 
 /**
- * Function that removes a bill
- * @param    {Object} req    post request
- * @param    {Object} res    post response
- * @return   None
- */
+* Function that removes a bill from the database
+* @param    {Object} req    post request
+* @param    {Object} res    post response
+* @return   None
+*/
 exports.remove = function(req, res){
-  Bill.deleteOne({ _id: req.params.id }, function(err) {
-    if (!err) { }
-    else { console.log('Unable to remove ' + req.params.id); }
+  let billId = req.params.billId;
+ 
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
   });
 
-  // Remove transaction from users array 
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
-
-    if (users.length < 1) {
-      res.send('BAD');
-      return;
+  var sql = "DELETE FROM bill where id='" + billId + "'";
+  db.query(sql, function (err, bills) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
     }
-
-    const index = users[0].bills.indexOf(req.params.id);
-
-    if (index > -1) {
-      users[0].bills.splice(index, 1);
-    }
-    
-    // Update transaction for user
-    User.updateOne({ username: req.cookies.login.username }, 
-      { bills: users[0].bills }, function(err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json(result);
-      }
-    });
-  })
+    res.sendStatus(200);
+  });
 };
