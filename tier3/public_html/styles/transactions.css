@@ -1,0 +1,54 @@
+#transactionTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border-spacing: 0;
+    width: 80%;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+}
+
+#transactionTable th {
+    cursor: pointer;
+    background-color: #cccccc;
+}
+
+#transactionTable th, #transactionTable td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid gray;
+}
+
+#transactionTable input {
+    width: 100%;
+    font: 18px Arial, sans-serif;
+}
+
+.acctCol {
+    width: 15%;
+}
+
+.dateCol {
+    width: 15%;
+}
+
+.amtCol {
+    width: 15%;
+}
+
+.catCol {
+    width: 20%;
+}
+
+.descCol {
+    width: 25%;
+}
+
+.actionCol {
+    width: 10%;
+    font: 14px Arial, sans-serif;
+}
+
+.hiddenCol {
+    display: none;
+}
