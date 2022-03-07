@@ -6,14 +6,7 @@
  * @since     01/21/2022
  */
 
-const delay = require('delay');
-
-const Budget = require('../models/budget')
-const User = require('../models/user')
-
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-const DELAY  = SECOND / 50;
+var mysql = require('mysql');
 
 /**
  * Function that adds a new budget to the database
@@ -21,114 +14,77 @@ const DELAY  = SECOND / 50;
  * @param    {Object} res    post response
  * @return   None
  */
-exports.add = function(req, res){
-  
-  try {
-    if (!req.cookies.login.username) {
-      res.send('BAD');
-      return;
+exports.add = async function(req, res){
+  let budget = req.body;
+
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
+  });
+
+  sql = "INSERT INTO budget (date, max, description, current, remaining, username) " + 
+    "VALUES ('" + budget.date + "','" + budget.max + "','" + 
+    budget.description + "','" + budget.current + "','" + budget.remaining + 
+    "','" + budget.username + "')";
+  db.query(sql, function (err, result) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
     }
-  } catch (except) {
-    res.send('BAD');
-    return;
-  }
-
-  let budgetObject = JSON.parse(req.body.budget);
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
-
-    if (users.length < 1) {
-      res.send('Not logged in');
-      return;
-    }
-
-    var newBudget = new Budget({
-      date        : budgetObject.date,
-      max         : budgetObject.max,
-      category    : budgetObject.category,
-      current     : budgetObject.current,
-      remaining   : budgetObject.remaining
-    });
-
-    newBudget.save(function (err) {
-      if (err) console.log('An error occurred while saving');
-    })
-
-    users[0].budget.push(newBudget._id);
-    users[0].save();
-    res.send('Budget created!')
+    res.sendStatus(201)
   });
 };
 
 /**
- * Function that returns a JSON array of budgets
- * @param    {Object} req    post request
- * @param    {Object} res    post response
- * @return   None
- */
+* Function that returns an array of budgets
+* @param    {Object} req    post request
+* @param    {Object} res    post response
+* @return   None
+*/
 exports.get = function(req, res){
-  if (!req.cookies.login || !req.cookies.login.username) {
-      res.send('BAD');
-      return;
-  }
-  
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
+  let usr = req.params.username;
+ 
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
+  });
 
-    if (users.length < 1) {
-      res.send('BAD');
-      return;
+  var sql = "SELECT * FROM budget where username='" + usr + "'";
+  db.query(sql, function (err, budgets) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
     }
-
-    var userBudgets = [];
-    for (budget of users[0].budget) {
-      Budget.find({ '_id': budget })
-        .exec(function (error, results) {
-          userBudgets.push(results[0]);
-        })
-    }
-
-    // delay allows data to be sent in time
-    await delay(DELAY);
-    res.send(userBudgets);
-  })
+    res.status(200).send(budgets);
+  });
 };
 
 /**
- * Function that removes a budget
- * @param    {Object} req    post request
- * @param    {Object} res    post response
- * @return   None
- */
+* Function that removes a budget from the database
+* @param    {Object} req    post request
+* @param    {Object} res    post response
+* @return   None
+*/
 exports.remove = function(req, res){
-  Budget.deleteOne({ _id: req.params.id }, function(err) {
-    if (!err) { }
-    else { console.log('Unable to remove ' + req.params.id); }
+  let budgetId = req.params.budgetId;
+ 
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "cloudsecurity",
+    database: "pennywise"
   });
 
-  // Remove transaction from users array 
-  User.find({ username: req.cookies.login.username })
-    .exec(async function (error, users) {
-
-    if (users.length < 1) {
-      res.send('BAD');
-      return;
+  var sql = "DELETE FROM budget where id='" + budgetId + "'";
+  db.query(sql, function (err, response) {
+    if (err) {
+      res.sendStatus(400);
+      throw err;
     }
-
-    const index = users[0].budget.indexOf(req.params.id);
-
-    if (index > -1) {
-      users[0].budget.splice(index, 1);
-    }
-  
-    // Update transaction for user
-    User.updateOne({ username: req.cookies.login.username }, 
-      { budget: users[0].budget }, function(err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json(result);
-      }
-    });
-  })
+    res.sendStatus(200);
+  });
 };

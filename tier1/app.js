@@ -38,10 +38,10 @@ db.createTables();
 
  
 const billRoute        = require('./routes/bill');
-// const budgetRoute      = require('./routes/budget');
-// const investmentRoute  = require('./routes/investment');
-// const propertyRoute    = require('./routes/property');
-// const transactionRoute = require('./routes/transaction');
+const budgetRoute      = require('./routes/budget');
+const investmentRoute  = require('./routes/investment');
+const propertyRoute    = require('./routes/property');
+const transactionRoute = require('./routes/transaction');
 const userRoute        = require('./routes/user');
 
 /**
@@ -67,29 +67,28 @@ app.use(function (req, res, next) {
  * GET requests
  */
 
-// app.get('/get/users/',   userRoute.get);
-app.get('/user/login/:username/:password', userRoute.login);
-// app.get('/transaction/get/',        transactionRoute.get);
-// app.get('/transaction/remove/:id',  transactionRoute.remove);
-app.get('/bill/get/:username',       billRoute.get);
-app.get('/bill/remove/:billId',      billRoute.remove);
-// app.get('/budget/get/',             budgetRoute.get);
-// app.get('/budget/remove/:id',       budgetRoute.remove);
-// app.get('/investment/get/',         investmentRoute.get);
-// app.get('/investment/remove/:id',   investmentRoute.remove);
-// app.get('/property/get/',           propertyRoute.get);
-// app.get('/property/remove/:id',     propertyRoute.remove);
+app.get('/user/login/:username/:password',    userRoute.login);
+app.get('/transaction/get/',                  transactionRoute.get);
+app.get('/transaction/remove/:transactionId', transactionRoute.remove);
+app.get('/bill/get/:username',                billRoute.get);
+app.get('/bill/remove/:billId',               billRoute.remove);
+app.get('/budget/get/',                       budgetRoute.get);
+app.get('/budget/remove/:budgetId',           budgetRoute.remove);
+app.get('/investment/get/',                   investmentRoute.get);
+app.get('/investment/remove/:investId',       investmentRoute.remove);
+app.get('/property/get/',                     propertyRoute.get);
+app.get('/property/remove/:propId',           propertyRoute.remove);
 
 /**
  * POST requests
  */
 
 app.post('/user/add/',        userRoute.add);
-// app.post('/transaction/add/', transactionRoute.add);
+app.post('/transaction/add/', transactionRoute.add);
 app.post('/bill/add/',        billRoute.add);
-// app.post('/budget/add/',      budgetRoute.add);
-// app.post('/investment/add/',  investmentRoute.add);
-// app.post('/property/add/',    propertyRoute.add);
+app.post('/budget/add/',      budgetRoute.add);
+app.post('/investment/add/',  investmentRoute.add);
+app.post('/property/add/',    propertyRoute.add);
 
 /**
  * Listen on LOCALHOST:3000
