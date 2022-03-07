@@ -19,52 +19,49 @@ window.onload = function() {
  * @return  : None
  */
 function displayTransactions() {
+  const loggedInUser = localStorage.getItem("user");
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    return;
+  }
 
   $.ajax({
-    url:'/transaction/get/',
-    method: 'GET',
+    url: '/transaction/get/' + loggedInUser,
+    method:'GET',
+    statusCode: {
+      200: function (response) {
+        var table = document.getElementById("acctTable");
+        if (response.length == 0 || !Array.isArray(response)) {
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          cell.classList.add('col1');
+          cell.innerHTML = 'No accounts found';
+          return
+        } 
 
-    success: function( result ) {
-      
-      if (result == 'BAD') {
-        alert('You are no longer signed in! Redirecting to login.'); 
-        window.location.href = "index.html";
-        return;
-      }
+        for (i in response) {
+          if (response[i] === undefined){
+            continue;
+          }
 
-      var table = document.getElementById("acctTable");
+          var row = table.insertRow(i);
 
-      if (result.length == 0 || !Array.isArray(result)) {
-        var row = table.insertRow(0);
-        var cell = row.insertCell(0);
-        cell.classList.add('col1');
-        cell.innerHTML = 'No accounts found';
-        return
-      } 
+          var col1 = row.insertCell(0);
+          col1.classList.add('col1');
+          col1.innerHTML = response[i].description;
 
-      for (i in result) {
-        if (result[i] === undefined){
-          continue;
+          var col2 = row.insertCell(1);
+          col2.classList.add('col2');
+          var category = '-';
+          if (response[i].category.toLowerCase() == 'income') {
+            category = '+';
+          }
+          col2.innerHTML = category + '$' + response[i].amount;
         }
-
-        var row = table.insertRow(i);
-
-        var col1 = row.insertCell(0);
-        col1.classList.add('col1');
-        col1.innerHTML = result[i].desc;
-
-        var col2 = row.insertCell(1);
-        col2.classList.add('col2');
-        var category = '-';
-        if (result[i].category.toLowerCase() == 'income') {
-          category = '+';
-        }
-        col2.innerHTML = category + '$' + result[i].amount;
+      },
+      400: function (response) {
+        alert('Unable to get transactions');
       }
-    },
-
-    error: function() {
-      console.log('Unable to get account data');
     }
   });
 }
@@ -126,47 +123,45 @@ function displayBills() {
  */
 function displayInvest() {
 
+  const loggedInUser = localStorage.getItem("user");
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    return;
+  }
+
   $.ajax({
-    url:'/investment/get/',
-    method: 'GET',
+    url: '/investment/get/' + loggedInUser,
+    method:'GET',
+    statusCode: {
+      200: function (response) {
+        var table = document.getElementById("investTable");
+        if (response.length == 0 || !Array.isArray(response)) {
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          cell.classList.add('col1');
+          cell.innerHTML = 'No investments found';
+          return
+        } 
 
-    success: function( result ) {
-        
-      if (result == 'BAD') {
-        alert('You are no longer signed in! Redirecting to login.'); 
-        window.location.href = "index.html";
-        return;
-      }
+        for (i in response) {
+          if (response[i] === undefined){
+            continue;
+          }
 
-      var table = document.getElementById("investTable");
+          var row = table.insertRow(i);
 
-      if (result.length == 0 || !Array.isArray(result)) {
-        var row = table.insertRow(0);
-        var cell = row.insertCell(0);
-        cell.classList.add('col1');
-        cell.innerHTML = 'No investments found';
-        return
-      } 
+          var col1 = row.insertCell(0);
+          col1.classList.add('col1');
+          col1.innerHTML = response[i].name;
 
-      for (i in result) {
-        if (result[i] === undefined){
-          continue;
+          var col2 = row.insertCell(1);
+          col2.classList.add('col2');
+          col2.innerHTML = '$' + response[i].current;
         }
-
-        var row = table.insertRow(i);
-
-        var col1 = row.insertCell(0);
-        col1.classList.add('col1');
-        col1.innerHTML = result[i].name;
-
-        var col2 = row.insertCell(1);
-        col2.classList.add('col2');
-        col2.innerHTML = '$' + result[i].cur;
+      },
+      400: function (response) {
+        alert('Unable to get investments');
       }
-    },
-
-    error: function() {
-        console.log('Unable to get investment data');
     }
   });
 }
@@ -178,47 +173,46 @@ function displayInvest() {
  */
 function displayProperty() {
 
+  const loggedInUser = localStorage.getItem("user");
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    return;
+  }
+
   $.ajax({
-    url:'/property/get/',
-    method: 'GET',
+    url: '/property/get/' + loggedInUser,
+    method:'GET',
+    statusCode: {
+      200: function (response) {
+        var table = document.getElementById("propTable");
 
-    success: function( result ) {
-        
-      if (result == 'BAD') {
-        alert('You are no longer signed in! Redirecting to login.'); 
-        window.location.href = "index.html";
-        return;
-      }
-      
-      var table = document.getElementById("propTable");
+        if (response.length == 0 || !Array.isArray(response)) {
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          cell.classList.add('col1');
+          cell.innerHTML = 'No property found';
+          return
+        } 
 
-      if (result.length == 0 || !Array.isArray(result)) {
-        var row = table.insertRow(0);
-        var cell = row.insertCell(0);
-        cell.classList.add('col1');
-        cell.innerHTML = 'No property found';
-        return
-      } 
+        for (i in response) {
+          if (response[i] === undefined){
+            continue;
+          }
 
-      for (i in result) {
-        if (result[i] === undefined){
-          continue;
+          var row = table.insertRow(i);
+
+          var col1 = row.insertCell(0);
+          col1.classList.add('col1');
+          col1.innerHTML = response[i].type;
+
+          var col2 = row.insertCell(1);
+          col2.classList.add('col2');
+          col2.innerHTML = '$' + response[i].current;
         }
-
-        var row = table.insertRow(i);
-
-        var col1 = row.insertCell(0);
-        col1.classList.add('col1');
-        col1.innerHTML = result[i].type;
-
-        var col2 = row.insertCell(1);
-        col2.classList.add('col2');
-        col2.innerHTML = '$' + result[i].current;
+      },
+      400: function (response) {
+        alert('Unable to get investments');
       }
-    },
-
-    error: function() {
-      console.log('Unable to get property data');
     }
   });
 }

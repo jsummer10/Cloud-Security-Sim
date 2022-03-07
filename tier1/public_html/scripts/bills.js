@@ -6,14 +6,8 @@
  * @since     01/21/2022
  */
 
-let TABLENAME = 'billsTable';
+const TABLENAME = 'billsTable';
 
-// Display table data on load
-window.onload = function() {
-  displayTable();
-};
-
-// Enum style objects to handle column values
 const column = {
   ACCOUNT  : 0,
   DATE     : 1,
@@ -24,40 +18,11 @@ const column = {
   HIDDEN   : 6
 }
 
-const column_id = {
-  ACCOUNT  : 'acctCol',
-  DATE     : 'dateCol',
-  AMOUNT   : 'amtCol',
-  CATEGORY : 'catCol',
-  DESC     : 'descCol',
-  ACTION   : 'actionCol',
-  HIDDEN   : 'hiddenCol'
-}
+// Display table data on load
+window.onload = function() {
+  displayTable();
+};
 
-/**
- * This function capitalizes each word in a string
- * @param   : string phrase
- * @return  : capitalized string phrase
- */
-function makeTitle(string) {
-
-  var newString = '';
-  var capNext = false;
-
-  for (i in string) {
-    if (string[i] == ' ') {
-      capNext == true;
-    }
-
-    if (capNext || i == 0) {
-      newString += string[i].toUpperCase();
-    } else {
-      newString += string[i];
-    }
-  }
-
-  return newString;
-}
 
 /**
  * This function deletes a row from the table
@@ -73,7 +38,7 @@ function deleteRow(btn) {
     method:'GET',
     statusCode: {
       200: function (response) {
-        clearTable();
+        clearTable(TABLENAME);
         displayTable();
       },
       400: function (response) {
@@ -85,17 +50,6 @@ function deleteRow(btn) {
   row.parentNode.removeChild(row);
 }
 
-/**
- * Resets the table to default
- * @param   : None
- * @return  : None
- */
-function clearTable() {
-  var table = document.getElementById(TABLENAME);
-  while (table.rows.length > 2) {
-    table.deleteRow(2);
-  }
-}
 
 /**
  * This function displays all bills
@@ -163,7 +117,7 @@ function displayTable() {
           cellAction.appendChild(delBtn);
 
           var cellId = row.insertCell(column.HIDDEN);
-          cellId.classList.add(column_id.HIDDEN);
+          cellId.classList.add('hiddenCol');
           cellId.innerHTML = response[i].id;
         }
       },
@@ -225,89 +179,6 @@ function addBill() {
     }
   });
 
-  clearTable();
+  clearTable(TABLENAME);
   displayTable();
-}
-
-/**
- * This function sorts the table rows
- * @param   : column number to be sorted
- * @return  : None
- */
-function sortTable(n) {
-  var rows, shouldSwitch, switchcount = 0;
-  table = document.getElementById(TABLENAME);
-  switching = true;
-
-  direction = "ascending";
-
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-
-    //--------------------------------
-    // Iterate through the table rows
-    //--------------------------------
-
-    for (i = 2; i < (rows.length - 1); i++) {
-
-      shouldSwitch = false;
-    
-      curElement = rows[i].getElementsByTagName("TD")[n];
-      nextElement = rows[i + 1].getElementsByTagName("TD")[n];
-    
-      var curCell = '';
-      var nextCell = '';
-
-      //----------------------------------------
-      // Get current and next cell data by type
-      //----------------------------------------
-
-      if (n == column.DATE) {
-        curCell = new Date(curElement.innerHTML.toLowerCase());
-        nextCell = new Date(nextElement.innerHTML.toLowerCase());
-      }
-    
-      else if (n == column.AMOUNT) {
-        curCell = parseFloat(curElement.innerHTML);
-        nextCell = parseFloat(nextElement.innerHTML);
-      }
-
-      else if (n == column.CATEGORY || n == column.DESC || 
-             n == column.ACCOUNT) {
-        curCell = curElement.innerHTML.toLowerCase();
-        nextCell = nextElement.innerHTML.toLowerCase();
-      }
-
-      else {
-        console.log('Error with row sorting');
-        continue;
-      }
-
-      //-----------------------------------------
-      // Determine if a swap should be performed
-      //-----------------------------------------
-
-      if (direction == "ascending" && curCell > nextCell) {
-        shouldSwitch = true;
-        break;
-      } else if (direction == "descending" && curCell < nextCell) {
-        shouldSwitch = true;
-        break;
-      }
-    }
-
-    //---------------------------------------
-    // Perform switch or alternate direction
-    //---------------------------------------
-
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
-      switching = true;
-      switchcount ++;
-    } else if (switchcount == 0 && direction == "ascending") {
-      direction = "descending";
-      switching = true;
-    }
-  }
 }

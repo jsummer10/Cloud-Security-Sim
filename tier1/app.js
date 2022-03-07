@@ -67,17 +67,17 @@ app.use(function (req, res, next) {
  * GET requests
  */
 
-app.get('/user/login/:username/:password',    userRoute.login);
-app.get('/transaction/get/',                  transactionRoute.get);
-app.get('/transaction/remove/:transactionId', transactionRoute.remove);
-app.get('/bill/get/:username',                billRoute.get);
-app.get('/bill/remove/:billId',               billRoute.remove);
-app.get('/budget/get/',                       budgetRoute.get);
-app.get('/budget/remove/:budgetId',           budgetRoute.remove);
-app.get('/investment/get/',                   investmentRoute.get);
-app.get('/investment/remove/:investId',       investmentRoute.remove);
-app.get('/property/get/',                     propertyRoute.get);
-app.get('/property/remove/:propId',           propertyRoute.remove);
+app.get('/user/login/:username/:password', userRoute.login);
+app.get('/transaction/get/:username',      transactionRoute.get);
+app.get('/transaction/remove/:transId',    transactionRoute.remove);
+app.get('/bill/get/:username',             billRoute.get);
+app.get('/bill/remove/:billId',            billRoute.remove);
+app.get('/budget/get/:username',           budgetRoute.get);
+app.get('/budget/remove/:budgetId',        budgetRoute.remove);
+app.get('/investment/get/:username',       investmentRoute.get);
+app.get('/investment/remove/:investId',    investmentRoute.remove);
+app.get('/property/get/:username',         propertyRoute.get);
+app.get('/property/remove/:propId',        propertyRoute.remove);
 
 /**
  * POST requests

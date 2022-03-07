@@ -24,9 +24,9 @@ exports.add = async function(req, res){
     database: "pennywise"
   });
 
-  sql = "INSERT INTO budget (date, max, description, current, remaining, username) " + 
+  sql = "INSERT INTO budget (date, max, category, current, remaining, username) " + 
     "VALUES ('" + budget.date + "','" + budget.max + "','" + 
-    budget.description + "','" + budget.current + "','" + budget.remaining + 
+    budget.category + "','" + budget.current + "','" + budget.remaining + 
     "','" + budget.username + "')";
   db.query(sql, function (err, result) {
     if (err) {
