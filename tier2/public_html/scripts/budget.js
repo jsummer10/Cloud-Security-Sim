@@ -18,11 +18,17 @@ const column = {
   HIDDEN    : 6
 }
 
+let loggedInUser = localStorage.getItem("user");
+
 // Display table data on load
 window.onload = function() {
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    window.location.href = "index.html";
+    return;
+  }
   displayTable();
 };
-
 
 /**
  * This function deletes a row from the table
@@ -57,12 +63,6 @@ function deleteRow(btn) {
  * @return  : None
  */
 function displayTable() {
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
-
   $.ajax({
     url: '/budget/get/' + loggedInUser,
     method:'GET',
@@ -148,12 +148,6 @@ function addBudget() {
   //---------------------
   // Update the database
   //---------------------
-
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
 
   let budget = { 
       category   : category, 

@@ -7,10 +7,17 @@
  */
 // Display data on load
 window.onload = function() {
-  displayTransactions();
-  displayBills();
-  displayInvest();
-  displayProperty();
+  const loggedInUser = localStorage.getItem("user");
+  if (!loggedInUser) {
+    alert('Unable to find user');
+    window.location.href = "index.html";
+    return;
+  }
+
+  displayTransactions(loggedInUser);
+  displayBills(loggedInUser);
+  displayInvest(loggedInUser);
+  displayProperty(loggedInUser);
 };
 
 /**
@@ -18,13 +25,7 @@ window.onload = function() {
  * @param   : None
  * @return  : None
  */
-function displayTransactions() {
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
-
+function displayTransactions(loggedInUser) {
   $.ajax({
     url: '/transaction/get/' + loggedInUser,
     method:'GET',
@@ -72,13 +73,6 @@ function displayTransactions() {
  * @return  : None
  */
 function displayBills() {
-
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
-
   $.ajax({
     url: '/bill/get/' + loggedInUser,
     method:'GET',
@@ -122,13 +116,6 @@ function displayBills() {
  * @return  : None
  */
 function displayInvest() {
-
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
-
   $.ajax({
     url: '/investment/get/' + loggedInUser,
     method:'GET',
@@ -172,13 +159,6 @@ function displayInvest() {
  * @return  : None
  */
 function displayProperty() {
-
-  const loggedInUser = localStorage.getItem("user");
-  if (!loggedInUser) {
-    alert('Unable to find user');
-    return;
-  }
-
   $.ajax({
     url: '/property/get/' + loggedInUser,
     method:'GET',
