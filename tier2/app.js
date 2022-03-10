@@ -21,6 +21,7 @@ const cookieParser  = require('cookie-parser');
 const express       = require('express');
 const parser        = require('body-parser');
 const path          = require('path');
+const rateLimit     = require('express-rate-limit')
 
 const app = express();
 
@@ -48,6 +49,15 @@ const userRoute        = require('./routes/user');
  * Express app setup
  */
 
+// limit the number of requests to mitigate DoS Attacks
+const apiRatelimit = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour in milliseconds
+  max: 100,
+  message: 'You have exceeded the 100 requests in 1 hrs limit!', 
+  headers: true, 
+});
+
+app.use(apiRatelimit);
 app.use(cookieParser());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
