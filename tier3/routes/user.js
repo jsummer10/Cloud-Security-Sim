@@ -7,6 +7,9 @@
  */
 
 var mysql = require('mysql');
+const crypto = require('crypto');
+
+const iterations = 1000;
 
 /**
  * Function that adds a new user to the database
@@ -31,15 +34,21 @@ exports.add = async function(req, res){
       throw err;
     }
     if (foundUsers.length == 0) {
-      sql = "INSERT INTO users (fname, lname, username, password) " + 
-        "VALUES ('" + userObject.fname + "','" + userObject.lname + "','" + 
-        userObject.username + "','" + userObject.password + "')";
-      db.query(sql, function (err, result) {
-        if (err) {
-          res.sendStatus(401);
-          throw err;
-        }
-        res.sendStatus(201)
+      var salt = crypto.randomBytes(64).toString('base64');
+      crypto.pbkdf2(userObject.password, salt, iterations, 64, 'sha512', (err, hash) => {
+        if (err) throw err;
+        let hStr = hash.toString('base64');
+
+        sql = "INSERT INTO users (fname, lname, username, salt, hash) " + 
+          "VALUES ('" + userObject.fname + "','" + userObject.lname + "','" + 
+          userObject.username + "','" + salt + "','" + hStr + "')";
+        db.query(sql, function (err, result) {
+          if (err) {
+            res.sendStatus(401);
+            throw err;
+          }
+          res.sendStatus(201)
+        });
       });
     } else {
       res.sendStatus(401);
@@ -64,12 +73,21 @@ exports.login = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM users where username='" + usr + "' AND " +
-    "password='" + psw + "'";
+  var sql = "SELECT * FROM users where username='" + usr + "'";
   db.query(sql, function (err, foundUsers) {
     if (err) throw err;
     if (foundUsers.length == 1) {
-      res.status(200).send(foundUsers[0]);
+      var salt = foundUsers[0].salt;
+      crypto.pbkdf2(psw, salt, iterations, 64, 'sha512', async (err, hash) => {
+        if (err) { throw err; }
+        let hStr = hash.toString('base64');
+        
+        if (foundUsers[0].hash == hStr) {
+          res.status(200).send(foundUsers[0]);
+        } else {
+          res.sendStatus(403);
+        }
+      });
     } else {
       res.sendStatus(401);
     }

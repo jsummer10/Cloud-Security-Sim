@@ -6,6 +6,8 @@
  * @since     01/21/2022
  */
 
+const passwordRE = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
 /**
  * Add new user to the database
  * @param   : None
@@ -20,6 +22,11 @@ function createUser() {
 
   if (psw != pswRepeat) {
     alert('Password do not match');
+    return;
+  }
+
+  if (!passwordRE.test(psw)) {
+    alert('Password does not meet criteria');
     return;
   }
 

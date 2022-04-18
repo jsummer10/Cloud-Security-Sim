@@ -52,7 +52,7 @@ const userRoute        = require('./routes/user');
 // limit the number of requests to mitigate DoS Attacks
 const apiRatelimit = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour in milliseconds
-  max: 100,
+  max: 200,
   message: 'You have exceeded the 100 requests in 1 hrs limit!', 
   headers: true, 
 });
