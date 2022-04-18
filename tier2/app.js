@@ -77,7 +77,6 @@ app.use(function (req, res, next) {
  * GET requests
  */
 
-app.get('/user/login/:username/:password', userRoute.login);
 app.get('/transaction/get/:username',      transactionRoute.get);
 app.get('/transaction/remove/:transId',    transactionRoute.remove);
 app.get('/bill/get/:username',             billRoute.get);
@@ -93,6 +92,7 @@ app.get('/property/remove/:propId',        propertyRoute.remove);
  * POST requests
  */
 
+app.post('/user/login/',      userRoute.login);
 app.post('/user/add/',        userRoute.add);
 app.post('/transaction/add/', transactionRoute.add);
 app.post('/bill/add/',        billRoute.add);

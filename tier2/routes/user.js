@@ -54,8 +54,9 @@ exports.add = async function(req, res){
 * @return   None
 */
 exports.login = function(req, res){
-  let usr = req.params.username;
-  let psw = req.params.password;
+  let userObject = JSON.parse(req.body.user);
+  let usr = userObject.username;
+  let psw = userObject.password;
  
   const db = mysql.createConnection({
     host: "localhost",

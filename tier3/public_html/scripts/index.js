@@ -29,10 +29,17 @@ function verifyUser() {
     return;
   }
 
-  // add new user
+  let user = { 
+    username : username,
+    password : password
+  };
+  let user_str = JSON.stringify(user);
+
+  // login to user
   $.ajax({
-    url: '/user/login/' + username + '/' + password,
-    method:'GET',
+    url: '/user/login/',
+    data: { user: user_str },
+    method:'POST',
     statusCode: {
       200: function (response) {
         localStorage.setItem('user', response.username);
