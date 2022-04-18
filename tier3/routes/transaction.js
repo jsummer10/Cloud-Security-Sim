@@ -24,17 +24,24 @@ exports.add = async function(req, res){
     database: "pennywise"
   });
 
-  sql = "INSERT INTO transaction (account, date, description, category, amount, username) " + 
-    "VALUES ('" + trans.account + "','" + trans.date + "','" + 
-    trans.description + "','" + trans.category + "','" + trans.amount + 
-    "','" + trans.username + "')";
-  db.query(sql, function (err, result) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("INSERT INTO transaction (account, date, description, category, amount, username) " + 
+           "VALUES (?, ?, ?, ?, ?, ?)", 
+    [
+      trans.account,
+      trans.date,
+      trans.description,
+      trans.category,
+      trans.amount,
+      trans.username
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(201)
     }
-    res.sendStatus(201)
-  });
+  );
 };
 
 /**
@@ -53,14 +60,18 @@ exports.get = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM transaction where username='" + usr + "'";
-  db.query(sql, function (err, transactions) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("SELECT * FROM transaction WHERE username=?",
+    [
+     usr
+    ],  
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.status(200).send(result);
     }
-    res.status(200).send(transactions);
-  });
+  );
 };
 
 /**
@@ -79,12 +90,16 @@ exports.remove = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "DELETE FROM transaction where id='" + transId + "'";
-  db.query(sql, function (err, result) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("DELETE FROM transaction where id=?",
+    [
+      transId
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
-  });
+  );
 };

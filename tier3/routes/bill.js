@@ -24,17 +24,24 @@ exports.add = async function(req, res){
     database: "pennywise"
   });
 
-  sql = "INSERT INTO bill (name, date, description, category, amount, username) " + 
-    "VALUES ('" + bill.name + "','" + bill.date + "','" + 
-    bill.description + "','" + bill.category + "','" + bill.amount + 
-    "','" + bill.username + "')";
-  db.query(sql, function (err, result) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("INSERT INTO bill (name, date, description, category, amount, username) " + 
+           "VALUES (?, ?, ?, ?, ?, ?)", 
+    [
+      bill.name,
+      bill.date,
+      bill.description,
+      bill.category,
+      bill.amount,
+      bill.username
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(201)
     }
-    res.sendStatus(201)
-  });
+  );
 };
 
 /**
@@ -53,14 +60,18 @@ exports.get = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM bill where username='" + usr + "'";
-  db.query(sql, function (err, bills) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("SELECT * FROM bill WHERE username=?",
+    [
+     usr
+    ],  
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.status(200).send(result);
     }
-    res.status(200).send(bills);
-  });
+  );
 };
 
 /**
@@ -79,12 +90,16 @@ exports.remove = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "DELETE FROM bill where id='" + billId + "'";
-  db.query(sql, function (err, bills) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("DELETE FROM bill where id=?",
+    [
+      billId
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
-  });
+  );
 };

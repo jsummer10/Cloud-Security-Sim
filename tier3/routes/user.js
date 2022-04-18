@@ -27,33 +27,44 @@ exports.add = async function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM users where username='" + userObject.username + "'";
-  db.query(sql, function (err, foundUsers) {
-    if (err) {
-      res.sendStatus(401);
-      throw err;
-    }
-    if (foundUsers.length == 0) {
-      var salt = crypto.randomBytes(64).toString('base64');
-      crypto.pbkdf2(userObject.password, salt, iterations, 64, 'sha512', (err, hash) => {
-        if (err) throw err;
-        let hStr = hash.toString('base64');
+  db.query("SELECT * FROM users WHERE username=?",
+    [
+      userObject.username
+    ], 
+    function (err, foundUsers) {
+      if (err) {
+        res.sendStatus(401);
+        throw err;
+      }
+      if (foundUsers.length == 0) {
+        var salt = crypto.randomBytes(64).toString('base64');
+        crypto.pbkdf2(userObject.password, salt, iterations, 64, 'sha512', (err, hash) => {
+          if (err) throw err;
+          let hStr = hash.toString('base64');
 
-        sql = "INSERT INTO users (fname, lname, username, salt, hash) " + 
-          "VALUES ('" + userObject.fname + "','" + userObject.lname + "','" + 
-          userObject.username + "','" + salt + "','" + hStr + "')";
-        db.query(sql, function (err, result) {
-          if (err) {
-            res.sendStatus(401);
-            throw err;
-          }
-          res.sendStatus(201)
+          db.query("INSERT INTO users (fname, lname, username, salt, hash) " + 
+            "VALUES (?, ?, ?, ?, ?)", 
+            [
+              userObject.fname,
+              userObject.lname,
+              userObject.username,
+              salt,
+              hStr,
+            ],
+            function (err, result) {
+              if (err) {
+                res.sendStatus(401);
+                throw err;
+              }
+              res.sendStatus(201)
+            }
+          );
         });
-      });
-    } else {
-      res.sendStatus(401);
+      } else {
+        res.sendStatus(401);
+      }
     }
-  });
+  );
 };
 
 /**
@@ -64,8 +75,6 @@ exports.add = async function(req, res){
 */
 exports.login = function(req, res){
   let userObject = JSON.parse(req.body.user);
-  let usr = userObject.username;
-  let psw = userObject.password;
  
   const db = mysql.createConnection({
     host: "localhost",
@@ -74,23 +83,27 @@ exports.login = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM users where username='" + usr + "'";
-  db.query(sql, function (err, foundUsers) {
-    if (err) throw err;
-    if (foundUsers.length == 1) {
-      var salt = foundUsers[0].salt;
-      crypto.pbkdf2(psw, salt, iterations, 64, 'sha512', async (err, hash) => {
-        if (err) { throw err; }
-        let hStr = hash.toString('base64');
-        
-        if (foundUsers[0].hash == hStr) {
-          res.status(200).send(foundUsers[0]);
-        } else {
-          res.sendStatus(403);
-        }
-      });
-    } else {
-      res.sendStatus(401);
+  db.query("SELECT * FROM users WHERE username=?",
+    [
+      userObject.username
+    ],
+    function(err, foundUsers) { 
+      if (err) throw err;
+      if (foundUsers.length == 1) {
+        var salt = foundUsers[0].salt;
+        crypto.pbkdf2(userObject.password, salt, iterations, 64, 'sha512', async (err, hash) => {
+          if (err) { throw err; }
+          let hStr = hash.toString('base64');
+          
+          if (foundUsers[0].hash == hStr) {
+            res.status(200).send(foundUsers[0]);
+          } else {
+            res.sendStatus(403);
+          }
+        });
+      } else {
+        res.sendStatus(401);
+      }
     }
-  });
+  );
 };

@@ -24,17 +24,24 @@ exports.add = async function(req, res){
     database: "pennywise"
   });
 
-  sql = "INSERT INTO investment (type, name, buy, current, gain, username) " + 
-    "VALUES ('" + invest.type + "','" + invest.name + "','" + 
-    invest.buy + "','" + invest.current + "','" + invest.gain + 
-    "','" + invest.username + "')";
-  db.query(sql, function (err, result) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("INSERT INTO investment (type, name, buy, current, gain, username) " + 
+           "VALUES (?, ?, ?, ?, ?, ?)", 
+    [
+      invest.type,
+      invest.name,
+      invest.buy,
+      invest.current,
+      invest.gain,
+      invest.username
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(201)
     }
-    res.sendStatus(201)
-  });
+  );
 };
 
 /**
@@ -53,14 +60,18 @@ exports.get = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "SELECT * FROM investment where username='" + usr + "'";
-  db.query(sql, function (err, investments) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("SELECT * FROM investment WHERE username=?",
+    [
+     usr
+    ],  
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.status(200).send(result);
     }
-    res.status(200).send(investments);
-  });
+  );
 };
 
 /**
@@ -79,12 +90,16 @@ exports.remove = function(req, res){
     database: "pennywise"
   });
 
-  var sql = "DELETE FROM investment where id='" + investId + "'";
-  db.query(sql, function (err, result) {
-    if (err) {
-      res.sendStatus(400);
-      throw err;
+  db.query("DELETE FROM investment where id=?",
+    [
+      investId
+    ], 
+    function (err, result) {
+      if (err) {
+        res.sendStatus(400);
+        throw err;
+      }
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
-  });
+  );
 };
