@@ -140,6 +140,12 @@ function addInvestment() {
   let cur  = $('#curInput').val().trim();
   let gain = $('#gainInput').val().trim();
 
+  type = safe_check(type);
+  name = safe_check(name);
+  buy = safe_check(buy);
+  cur = safe_check(cur);
+  gain = safe_check(gain);
+
   if (type == '' || name == '' || buy == '' || 
     cur == '' || gain == ''){
     alert('All fields are required');

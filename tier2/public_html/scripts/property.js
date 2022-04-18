@@ -141,6 +141,12 @@ function addProperty() {
   let current = $('#curInput').val().trim();
   let change  = $('#changeInput').val().trim();
 
+  type = safe_check(type);
+  age = safe_check(age);
+  buy = safe_check(buy);
+  current = safe_check(current);
+  change = safe_check(change);
+
   if (type == '' || age == '' || buy == '' || 
     current == '' || change == ''){
     alert('All fields are required');

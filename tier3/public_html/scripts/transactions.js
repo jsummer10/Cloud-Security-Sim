@@ -138,6 +138,12 @@ function addTransaction() {
   let category = makeTitle($('#catInput').val().trim());
   let desc     = $('#descInput').val().trim();
 
+  account = safe_check(account);
+  date = safe_check(date);
+  amount = safe_check(amount);
+  category = safe_check(category);
+  desc = safe_check(desc);
+
   if (account == '' || date == '' || amount == '' || 
     category == '' || desc == ''){
     alert('All fields are required');

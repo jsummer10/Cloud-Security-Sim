@@ -29,6 +29,9 @@ function verifyUser() {
     return;
   }
 
+  username = safe_check(username);
+  password = safe_check(password);
+
   let user = { 
     username : username,
     password : password

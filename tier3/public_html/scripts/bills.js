@@ -140,6 +140,12 @@ function addBill() {
   let category = makeTitle($('#catInput').val().trim());
   let desc     = $('#descInput').val().trim();
 
+  name = safe_check(name);
+  date = safe_check(date);
+  amount = safe_check(amount);
+  category = safe_check(category);
+  desc = safe_check(desc);
+
   if (name == '' || date == '' || amount == '' || 
     category == '' || desc == ''){
     alert('All fields are required');

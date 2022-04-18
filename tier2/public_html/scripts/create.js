@@ -20,6 +20,12 @@ function createUser() {
   let psw       = $('#psw').val().trim();
   let pswRepeat = $('#psw-repeat').val().trim();
 
+  fname = safe_check(fname);
+  lname = safe_check(lname);
+  username = safe_check(username);
+  psw = safe_check(psw);
+  pswRepeat = safe_check(pswRepeat);
+
   if (psw != pswRepeat) {
     alert('Password do not match');
     return;

@@ -6,6 +6,16 @@
  * @since     01/21/2022
  */
 
+/**
+ * Replaces illegal characters
+ * @param   : string phrase
+ * @return  : replaced string phrase
+ */
+function safe_check(text) {
+  text = text.replace(/[^a-z0-9, !?&$%]/gi,'');
+  return text;
+}
+
 
 /**
  * Logs out the current user

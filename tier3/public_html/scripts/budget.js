@@ -139,6 +139,12 @@ function addBudget() {
   let current   = $('#curInput').val().trim();
   let remaining = $('#remainInput').val().trim();
 
+  category = safe_check(category);
+  date = safe_check(date);
+  max = safe_check(max);
+  current = safe_check(current);
+  remaining = safe_check(remaining);
+
   if (category == '' || date == '' || max == '' || 
     current == '' || remaining == ''){
     alert('All fields are required');
