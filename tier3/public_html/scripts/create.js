@@ -14,6 +14,13 @@ const passwordRE = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
  * @return  : None
  */
 function createUser() {
+  var response = grecaptcha.getResponse();
+  if(response.length == 0) { 
+    alert("Please verify you are humann!"); 
+    evt.preventDefault();
+    return;
+  }
+
   let fname     = $('#fname').val().trim();
   let lname     = $('#lname').val().trim();
   let username  = $('#username').val().trim();

@@ -7,6 +7,7 @@
     <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
     <link id="cssFile" rel="stylesheet" type="text/css" href="styles/index.css">
     <link rel="icon" href="img/favicon.png">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   
   <body>
@@ -31,13 +32,20 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" name="psw" id="psw" required>
 
+        <div id="myCaptcha">
+          <div 
+            class="g-recaptcha" 
+            data-sitekey="6LeEy4YfAAAAAIuP8lbDkn8nixlVbEuDUdfatKFN"
+          ></div>
+        </div>
+        
         <button type="submit" class="loginbtn">Login</button>
       </div>
-      
-      <div class="container signin">
-        <p>Don't have an account? <a href="/create.html">Register</a>.</p>
-      </div>
     </form>
+
+    <div class="container signin">
+      <p>Don't have an account? <a href="/create.html">Register</a>.</p>
+    </div>
 
     <script src="scripts/jquery.js"></script>
     <script src="scripts/utility.js"></script>

@@ -8,6 +8,7 @@
     <link id="cssFile" rel="stylesheet" type="text/css" href="styles/theme.css">
     <link id="cssFile" rel="stylesheet" type="text/css" href="styles/create.css">
     <link rel="icon" href="img/favicon.png">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 
   <body>
@@ -53,13 +54,20 @@
           </ul>
         </div>
 
+        <div id="myCaptcha">
+          <div 
+            class="g-recaptcha" 
+            data-sitekey="6LcjxYYfAAAAAAWFw9eyqNpXTngQy7MO-1JzgLpb"
+          ></div>
+        </div>
+
         <button type="submit" class="registerbtn">Register</button>
       </div>
-      
-      <div class="container signin">
-        <p>Already have an account? <a href="/">Sign in</a>.</p>
-      </div>
     </form>
+      
+    <div class="container signin">
+      <p>Already have an account? <a href="/">Sign in</a>.</p>
+    </div>
 
     <script src="scripts/jquery.js"></script>
     <script src="scripts/utility.js"></script>

@@ -82,3 +82,11 @@ a {
 #passReqList li {
     padding: 5px 0px;
 }
+
+#myCaptcha {
+  text-align: center;
+}
+
+.g-recaptcha {
+  display: inline-block;
+}

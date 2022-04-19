@@ -12,7 +12,12 @@
  * @return  : None
  */
 function verifyUser() {
-  // window.location.href = "home.html";
+  var response = grecaptcha.getResponse();
+  if(response.length == 0) { 
+    alert("Please verify you are humann!"); 
+    evt.preventDefault();
+    return;
+  }
 
   var httpRequest = new XMLHttpRequest();
     
