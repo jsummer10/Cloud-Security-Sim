@@ -55,6 +55,12 @@ function verifyUser() {
       },
       401: function (response) {
         alert('Invalid Credentials');
+      },
+      403: function (response) {
+        alert('Invalid Credentials');
+      },
+      423: function (response) {
+        alert('Too many attempts! This account is disabled for 5 minutes.');
       }
     }
   });

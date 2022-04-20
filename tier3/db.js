@@ -40,7 +40,7 @@ exports.createTables = function(){
     // Create users table
     var sql = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, " + 
       "fname VARCHAR(255), lname VARCHAR(255), username VARCHAR(255), " + 
-      "salt VARCHAR(255), hash VARCHAR(255))";
+      "salt VARCHAR(255), hash VARCHAR(255), locked VARCHAR(255), attempts VARCHAR(255))";
     mainDB.query(sql, function (err, result) {
       if (err) throw err;
     });
