@@ -1,4 +1,4 @@
-# Cloud Security Sim
+# Cloud Security Simulator
 
 ## 1 Descriptions
 
