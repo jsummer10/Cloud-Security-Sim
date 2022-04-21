@@ -20,11 +20,23 @@ Baseline code
 
 ### Tier 2
 
-Tier 2 security upgrades
+Security improvements:
+
+- local storage management
+- XSS checks for client text fields 
+- SQL injection checks for client text fields
+- Request rate limit
+- Force secure password
+- Using POST requests instead of GET requests
 
 ### Tier 3
 
-Tier 3 security upgrades
+Security improvements:
+
+- SQL injection checks in the server
+- Using a CAPTCHA
+- Disable accounts after an excess number of requests
+- Encrypt passwords
 
 # 3 Authors
 
