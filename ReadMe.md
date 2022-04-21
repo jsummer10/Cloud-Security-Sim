@@ -12,7 +12,11 @@ The first tier will be the baseline design that will resemble a website similar 
 
 The intent is to perform various attacks through this three-tiered approach to demonstrate the effectiveness of threat mitigation strategies. As attacks are performed, the system will evolve to include new threat mitigation strategies for the tier two and tier three systems. 
 
-# 2 Layout
+# 2 Setup
+
+This system utilizes node.js and SQL. Both of which would need to be installed prior to using. 
+
+# 3 Layout
 
 ### Tier 1
 
@@ -33,12 +37,13 @@ Security improvements:
 
 Security improvements:
 
+- Tier 2 improvements
 - SQL injection checks in the server
 - Using a CAPTCHA
 - Disable accounts after an excess number of requests
 - Encrypt passwords
 
-# 3 Authors
+# 4 Authors
 
 - Jake Summerville
 - Martin Lopez
