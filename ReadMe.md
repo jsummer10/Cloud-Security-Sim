@@ -1,6 +1,6 @@
 # Cloud Security Sim
 
-# 1 Descriptions
+## 1 Descriptions
 
 We propose the development of a money management application hosted on a cloud-provider infrastructure to account for our three tier security implementation. The money management application shall have a client side in which users have the ability to login to their account and view critical information such as account information and user information and password updates. The application will also have a server component which will handle the routes from the client requests to providing access to our storage needs. 
 
@@ -12,11 +12,11 @@ The first tier will be the baseline design that will resemble a website similar 
 
 The intent is to perform various attacks through this three-tiered approach to demonstrate the effectiveness of threat mitigation strategies. As attacks are performed, the system will evolve to include new threat mitigation strategies for the tier two and tier three systems. 
 
-# 2 Setup
+## 2 Setup
 
 This system utilizes node.js and SQL. Both of which would need to be installed prior to using. 
 
-# 3 Layout
+## 3 Layout
 
 ### Tier 1
 
@@ -43,7 +43,7 @@ Security improvements:
 - Disable accounts after an excess number of requests
 - Encrypt passwords
 
-# 4 Authors
+## 4 Authors
 
 - Jake Summerville
 - Martin Lopez
