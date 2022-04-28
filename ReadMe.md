@@ -14,7 +14,7 @@ The intent is to perform various attacks through this three-tiered approach to d
 
 ## 2 Setup
 
-This system utilizes node.js and SQL. Both of which would need to be installed prior to using. 
+This system utilizes node.js and MySQL. Both of which would need to be installed prior to using. Ensure that the schema in MySQL is 'pennywise'. Ensure that the host is 'localhost', the user is 'root', and password is 'cloudsecurity'. 
 
 ## 3 Layout
 
