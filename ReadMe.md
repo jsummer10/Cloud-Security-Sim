@@ -16,6 +16,12 @@ The intent is to perform various attacks through this three-tiered approach to d
 
 This system utilizes node.js and MySQL. Both of which would need to be installed prior to using. Ensure that the schema in MySQL is 'pennywise'. Ensure that the host is 'localhost', the user is 'root', and password is 'cloudsecurity'. 
 
+Ensure that at directory of each tier to install node by running npm install. 
+
+To begin the node server please run npm start. 
+Ensure to run npm install mysql if packages not installed. 
+Run a node server at each tier to run the three different tiers.
+
 ## 3 Layout
 
 ### Tier 1
